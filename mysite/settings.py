@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ss$%&bb*l5bk@%f)0s4*eoyeuyuwmlff9p6knezm0u6nb0!e=k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['octopus-app-w5jl6.ondigitalocean.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['octopus-app-w5jl6.ondigitalocean.app', 'localhost', '127.0.0.1', 'bikasdahal.me']
 
 
 
