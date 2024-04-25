@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="article-entry">
+    <h2>{{ object.title }}</h2>
+    <p>by  {{object.author}} </p>
+    <p>{{object.content}} </p>
+</div>
+<p>
+    <a href="{%url 'article_edit' object.pk%}">Edit</a>
+    <a href="{%url 'article_delete' object.pk%}">Delete</a>
+</p>
+
+<div class="card-footer">
+    {% for comment in article.comments.all %}
+    <p> Comments: <br><hr>
+        <span>
+            {{comment}}
+        </span>
+    </p>
+    {% endfor %}
+</div>
+
+<p>Back to <a href="{%url 'article_list' %}">All Articles</a></p>
+
+{% endblock content %}
