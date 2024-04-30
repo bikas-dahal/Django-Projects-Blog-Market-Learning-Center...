@@ -1,0 +1,85 @@
+
+    {% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">YouTube Video Downloader</h1>
+        <form id="download-form" class="mb-3">
+            <div class="input-group mb-3">
+                <input type="text" id="url-input" name="url" class="form-control" placeholder="Enter YouTube video URL" aria-label="YouTube video URL" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Get Video Details</button>
+                </div>
+            </div>
+            <!-- Include the CSRF token in the form -->
+            {% csrf_token %}
+        </form>
+        <button id="download-btn" class="btn btn-primary mb-3">Download Video</button>
+        <div id="download-status" class="alert d-none"></div>
+        <div id="video-details" class="d-none">
+            <h2>Video Details:</h2>
+            <p><strong>Title:</strong> <span id="video-title"></span></p>
+            <p><strong>Views:</strong> <span id="video-views"></span></p>
+            <p><strong>Duration:</strong> <span id="video-duration"></span></p>
+            <p><strong>Description:</strong> <span id="video-desc"></span></p>
+            <p><strong>Rating:</strong> <span id="video-rating"></span></p>
+            <p><strong>URL:</strong> <a id="video-url" href="" target="_blank"></a></p>
+        </div>
+    </div>
+
+    {% endblock content %}
+
+    {% block js %}
+        $(document).ready(function() {
+            $('#download-form').submit(function(e) {
+                e.preventDefault();
+                var url = $('#url-input').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "details" %}',
+                    data: {
+                        url: url,
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val() // Include the CSRF token in the data
+                    },
+                    success: function(response) {
+                        if(response.status === 200) {
+                            $('#video-details').removeClass('d-none');
+                            $('#video-title').text(response.title);
+                            $('#video-views').text(response.views);
+                            $('#video-duration').text(response.duration);
+                            $('#video-desc').text(response.desc);
+                            $('#video-rating').text(response.rating);
+                            $('#video-url').text(response.url);
+                            $('#video-url').attr('href', response.url);
+                        } else {
+                            alert(response.value);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle errors
+                        alert('Error: ' + error.message);
+                    }
+                });
+            });
+
+            $('#download-btn').click(function() {
+                var url = $('#url-input').val();
+                $('#download-status').removeClass('d-none alert-success').addClass('alert-info').text('Downloading...');
+                $.ajax({
+                    type: 'GET',
+                    url: '{% url "download" %}',
+                    data: { url: url },
+                    success: function(response) {
+                        if(response.status === 'Download completed!!') {
+                            $('#download-status').removeClass('alert-info').addClass('alert-success').text('Download completed successfully!');
+                        } else {
+                            $('#download-status').removeClass('alert-info').addClass('alert-danger').text('Download failed. Please try again.');
+                        }
+                    },
+                    error: function() {
+                        $('#download-status').removeClass('alert-info').addClass('alert-danger').text('An error occurred. Please try again.');
+                    }
+                });
+            });
+        });
+        {% endblock js %}

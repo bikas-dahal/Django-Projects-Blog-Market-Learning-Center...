@@ -9,6 +9,9 @@ from .models import Post
 
 # Create your views here.
 
+def geneate_blog(request):
+    pass
+
 class BlogListView(ListView):
     model = Post
     template_name = 'home.html'
