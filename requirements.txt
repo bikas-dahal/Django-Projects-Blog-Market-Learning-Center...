@@ -12,7 +12,6 @@ gunicorn==22.0.0
 packaging==24.0
 sqlparse==0.5.0
 tzdata==2024.1
-pytubeasgiref
 certifi==2024.2.2
 cffi==1.16.0
 charset-normalizer==3.3.2
