@@ -1,11 +1,10 @@
 
-asgiref==3.8.1
+
 Django==5.0.4
 gunicorn==22.0.0
 packaging==24.0
 sqlparse==0.5.0
 tzdata==2024.1
-asgiref==3.8.1
 crispy-bootstrap5==2024.2
 Django==5.0.4
 django-crispy-forms==2.1
@@ -13,7 +12,6 @@ gunicorn==22.0.0
 packaging==24.0
 sqlparse==0.5.0
 tzdata==2024.1
-pytubeasgiref==3.8.1
 certifi==2024.2.2
 cffi==1.16.0
 charset-normalizer==3.3.2
@@ -36,7 +34,7 @@ packaging==24.0
 pathspec==0.12.1
 pillow==10.3.0
 pycparser==2.22
-pytube==15.0.0
+pytube
 PyYAML==6.0.1
 regex==2023.12.25
 requests==2.31.0
