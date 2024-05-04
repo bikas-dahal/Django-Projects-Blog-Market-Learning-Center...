@@ -52,6 +52,10 @@ INSTALLED_APPS = [
 ]
 
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -151,4 +155,4 @@ LOGOUT_REDIRECT_URL = 'blog_list'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
-EMIAL_BAKCEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

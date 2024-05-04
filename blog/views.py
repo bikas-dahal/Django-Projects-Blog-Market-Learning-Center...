@@ -12,6 +12,10 @@ from .models import Post
 def geneate_blog(request):
     pass
 
+
+def test(request):
+    return render(request, 'blog/index.html')
+
 class BlogListView(ListView):
     model = Post
     template_name = 'home.html'
