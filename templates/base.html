@@ -49,14 +49,14 @@
     <nav class="bg-gray-800 py-4">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between">
-                <a href="{% url 'blog_list'%}" class="text-white text-lg font-semibold">Django</a>
+                <a href="{% url 'home'%}" class="text-white text-lg font-semibold">My Site</a>
                 <ul class="flex space-x-4">
                     {% if user.is_authenticated %}
-                    <li><p class="text-white">{{ user.username }}</p></li>
-                    <li><a class="text-white" href="{% url 'create_blog' %}">Create Blog</a></li>
+                    <li><p class="text-white">{{ user.username|capfirst }}</p></li>
+                    {% comment %} <li><a class="text-white" href="{% url 'create_blog' %}">Create Blog</a></li> {% endcomment %}
                     <li><a href="{ url 'index'}" class="text-gray-300 hover:text-white">Home</a></li>
                     <li><a href="#" class="text-gray-300 hover:text-white">About</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">Contact</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">Friends</a></li>
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
                         <button class="text-gray-300 hover:text-white" type="submit">Logout</button>
@@ -72,25 +72,11 @@
         {% block content %}
         {% endblock %}
     </div>
-    <a
-    data-mdb-ripple-init class="btn text-white btn-floating m-1"
-    style="background-color: #55acee;"
-    href="#!"
-    role="button"
-    ><i class="fab fa-twitter"></i
-  ></a>
-
-
+    
 
     <footer class="bg-gray-800 py-4">
         <div class="container mx-auto px-4">
-            <a
-        data-mdb-ripple-init class="btn text-white btn-floating m-1"
-        style="background-color: #55acee;"
-        href="#!"
-        role="button"
-        ><i class="fab fa-twitter"></i
-      ></a>
+           
             <p class="text-center text-gray-300">© 2022 My Django Project. All rights reserved.</p>
         </div>
     </footer>

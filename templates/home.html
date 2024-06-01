@@ -19,13 +19,13 @@
 						</div>
 					</a>
 
-					<a href="single.html" class="h-entry v-height gradient">
+					<a href="{% url "blog:post_list" %}" class="h-entry v-height gradient">
 
 						<div class="featured-img" style="background-image: url('{% static "images/img_5_horizontal.jpg" %}');"></div>
 
 						<div class="text">
 							<span class="date">Apr. 14th, 2022</span>
-							<h2>Blog Generator</h2>
+							<h2>Blog</h2>
 						</div>
 					</a>
 				</div>
@@ -42,7 +42,7 @@
 					</a>
 				</div>
 				<div class="col-md-4">
-					<a href="single.html" class="h-entry mb-30 v-height gradient">
+					<a href="#" class="h-entry mb-30 v-height gradient">
 
 						<div class="featured-img" style="background-image: url('{% static "images/img_3_horizontal.jpg" %}');"></div>
 
@@ -66,49 +66,6 @@
 	</section>
 	<!-- End retroy layout blog posts -->
 
-    <div class="container">
-        <div class="row">
-          <div class="card">
-            <h5 class="card-header">Featured</h5>
-            <div class="card-body">
-              <h5 class="card-title">Youtube Video download</h5>
-              <p class="card-text">Let's download your favourite youtube video in 1 click</p>
-              <a href="{% url "yt_home" %}" class="btn btn-primary">Let's go,</a>
-            </div>
-          </div>
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                  <h5 class="card-title">Dark card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-              </div>
-          <!-- Card 1 -->
-          <div class="col-md-6">
-            <div class="card text-white mb-3">
-              <div class="card-img-top" style="background: linear-gradient(to left, #ff7e5f, #feb47b); height: 200px;"></div>
-              <div class="card-body">
-                <h5 class="card-title">Project 1</h5>
-                <p class="card-text">Description of Project 1.</p>
-                <a href="#" class="btn btn-primary">View Project</a>
-              </div>
-            </div>
-          </div>
-          <!-- Card 2 -->
-          <div class="col-md-6">
-            <div class="card text-white mb-3">
-              <div class="card-img-top" style="background: linear-gradient(to right, #ff7e5f, #feb47b); height: 200px;"></div>
-              <div class="card-body">
-                <h5 class="card-title">Project 2</h5>
-                <p class="card-text">Description of Project 2.</p>
-                <a href="#" class="btn btn-primary">View Project</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      
 
     <h1 class="display-4">
         My Site
@@ -116,22 +73,9 @@
 
     <p class="lead">
         Site for your personal growth.
-    </p>
-    <p class="lead">
-        <a href="{% url 'article_list' %}" class="bth-primary">Go to Articles</a>
-    </p>
+    
 
-{% for blog in all_blogs %}
-<ul>
-    
-    <li>
-        <a href="{%url 'blog_detail' blog.pk%}">
-        {{blog.title}} </a>
-        ({{blog.date}}) - {{blog.content|truncatewords:20}}
-    </li>
-    
-</ul>
-{% endfor %}
+
 </div>
 
 
