@@ -44,7 +44,6 @@ tqdm==4.66.2
 typing_extensions==4.11.0
 tzdata==2024.1
 urllib3==2.2.1
-whitenoiseasgiref==3.8.1
 certifi==2024.2.2
 cffi==1.16.0
 charset-normalizer==3.3.2
@@ -174,5 +173,5 @@ tzdata==2024.1
 urllib3==2.2.1
 webencodings==0.5.1
 Werkzeug==3.0.2
-whitenoise==6.6.0
+
 zope.interface==6.4
