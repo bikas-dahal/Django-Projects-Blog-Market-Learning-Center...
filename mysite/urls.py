@@ -16,12 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
+from blog.sitemaps import PostSitemap, TagSitemap
+
+
+sitemaps = {
+    'posts': PostSitemap,
+    'tags': TagSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('', include('blog.urls')),
-    path('', include('article.urls')) ,
-    path('', include('functions.urls'))
+    path('account/', include('account.urls')),
+    path(
+        'social-auth/',
+        include('social_django.urls', namespace='social')
+    ),
+    # path('accounts/', include('accounts.urls')),
+    path('blog/', include('blog.urls', namespace='blog')),
+    path('', include('functions.urls')),
+    # path('', include('chat.urls')),
 ]
+  

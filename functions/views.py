@@ -8,6 +8,12 @@ from pytube import YouTube
 import requests
 
 # Create your views here.
+
+def home(request):
+    return render(request, 'home.html')
+
+
+
 def homePage(request):
     return render(request, 'functions/download_page.html')
 

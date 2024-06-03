@@ -76,6 +76,18 @@
   :root {
     scroll-behavior: smooth; } }
 
+    /* Custom CSS to reduce the height of input fields */
+input, select, textarea {
+  height: calc(1.5em + 0.75rem + 2px); /* Adjust the height as needed */
+  padding: 0.375rem 0.75rem; /* Adjust the padding to align with the new height */
+}
+
+/* Apply the custom styles to Crispy Forms fields */
+.form-control {
+  height: calc(1.5em + 0.75rem + 2px); /* Adjust the height as needed */
+  padding: 0.375rem 0.75rem; /* Adjust the padding to align with the new height */
+}
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
