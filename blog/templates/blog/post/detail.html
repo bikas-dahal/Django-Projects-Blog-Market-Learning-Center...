@@ -1,48 +1,84 @@
 {% extends "blog/base.html" %}
-{% block title %}{{ post.title }}{% endblock %}
-{% block content %}
 {% load blog_tags %}
 
-  <h1>{{ post.title }}</h1>
-  <p class="date">
-    Published {{ post.publish }} by {{ post.author }}
-  </p>
-  {{ post.body |markdown }}
-  <p>
-    <a href="{% url "blog:post_share" post.id %}">
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="bg-light p-5 rounded-lg m-3">
+    <h1 class="display-4">{{ post.title }}</h1>
+    <p class="lead">
+      Published {{ post.publish }} by {{ post.author }}
+    </p>
+    <hr class="my-4">
+    <div class="markdown-content">
+      {{ post.body|markdown|safe }}
+    </div>
+    <a class="btn btn-primary btn-lg mt-3" href="{% url "blog:post_share" post.id %}" role="button">
       Share this post
     </a>
-  </p>
+  </div>
 
-  <h2>Similar posts</h2>
-  {% for post in similar_posts %}
-    <p>
-      <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-    </p>
-  {% empty %}
-    There are no similar posts yet.
-  {% endfor %}
-  
-
-  {% with comments.count as total_comments %}
-    <h2>
-      {{ total_comments }} comment{{ total_comments|pluralize }}
-    </h2>
-  {% endwith %}
-
-  {% for comment in comments %}
-    <div class="comment">
-      <p class="info">
-        Comment {{ forloop.counter }} by {{ comment.name }}
-        {{ comment.created }}
+  <div class="similar-posts mt-4">
+    <h2>Similar posts</h2>
+    {% for post in similar_posts %}
+      <p>
+        <a href="{{ post.get_absolute_url }}" class="text-decoration-none link-custom">{{ post.title }}</a>
       </p>
-      {{ comment.body|linebreaks }}
-    </div>
-  {% empty %}
-    <p>There are no comments.</p>
-  {% endfor %}
+    {% empty %}
+      <p>There are no similar posts yet.</p>
+    {% endfor %}
+  </div>
 
+  <div class="comments mt-4">
+    {% with comments.count as total_comments %}
+      <h2>
+        {{ total_comments }} comment{{ total_comments|pluralize }}
+      </h2>
+    {% endwith %}
+
+    {% for comment in comments %}
+      <div class="comment mb-3">
+        <p class="info">
+          Comment {{ forloop.counter }} by {{ comment.name }}
+          {{ comment.created }}
+        </p>
+        <div class="comment-body">
+          {{ comment.body|linebreaks }}
+        </div>
+      </div>
+    {% empty %}
+      <p>There are no comments yet.</p>
+    {% endfor %}
+  </div>
 
   {% include "blog/post/includes/comment_form.html" %}
+</div>
 
+<style>
+  .markdown-content p {
+    margin-bottom: 1rem;
+  }
+  .link-custom {
+    color: #0d6efd;
+    transition: color .3s ease-in-out;
+  }
+  .link-custom:hover {
+    color: #084298;
+    text-decoration: underline;
+  }
+  .comment {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  .comment .info {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  .comment-body {
+    font-size: 1rem;
+    color: #212529;
+  }
+</style>
 {% endblock %}

@@ -1,7 +1,17 @@
-<ul>
-    {% for post in latest_posts %}
-      <li>
-        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
+<style>
+  .list-group-item-action {
+    color: #007bff; /* Custom link color */
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+  
+  .list-group-item-action:hover {
+    color: #0056b3; /* Darker shade on hover */
+    background-color: #f8f9fa; /* Light background on hover */
+  }
+</style>
+
+<div class="list-group">
+  {% for post in latest_posts %}
+    <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">{{ post.title }}</a>
+  {% endfor %}
+</div>

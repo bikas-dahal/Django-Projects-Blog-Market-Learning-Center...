@@ -1,10 +1,25 @@
 {% extends "blog/base.html" %}
+
 {% block title %}Add a comment{% endblock %}
+
 {% block content %}
-  {% if comment %}
-    <h2>Your comment has been added.</h2>
-    <p><a href="{{ post.get_absolute_url }}">Back to the post</a></p>
-  {% else %}
-    {% include "blog/post/includes/comment_form.html" %}
-  {% endif %}
+  <div class="container mt-5">
+    {% if comment %}
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Success!</h4>
+        <p>Your comment has been added.</p>
+        <hr>
+        <p class="mb-0"><a href="{{ post.get_absolute_url }}" class="alert-link">Back to the post</a></p>
+      </div>
+    {% else %}
+      <div class="card">
+        <div class="card-header">
+          Leave a Comment
+        </div>
+        <div class="card-body">
+          {% include "blog/post/includes/comment_form.html" %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
 {% endblock %}

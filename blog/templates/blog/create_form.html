@@ -1,0 +1,43 @@
+{% extends './base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Create a New Blog Post</h2>
+  <form method="post" id="postForm" class="needs-validation" novalidate>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="mt-3">
+      <button type="submit" class="btn btn-primary">Publish</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var titleInput = document.getElementById('id_title');
+    var slugInput = document.getElementById('id_slug');
+
+    titleInput.addEventListener('input', function() {
+      var slug = this.value.trim().toLowerCase().replace(/[\s\W-]+/g, '-');
+      slugInput.value = slug;
+    });
+  });
+
+  // Bootstrap 5 client-side validation
+  (function () {
+    'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>
+{% endblock %}

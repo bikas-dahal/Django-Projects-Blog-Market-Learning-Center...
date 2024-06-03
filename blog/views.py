@@ -16,6 +16,29 @@ from django.contrib.postgres.search import (
     SearchRank
 )
 
+from django.shortcuts import render, redirect
+from .forms import PostForm
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def post_create(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            # Do not overwrite the slug if it's already set
+            if not post.slug:
+                post.slug = slugify(post.title)
+            post.save()
+            form.save_m2m()
+            return redirect(post.get_absolute_url())
+    else:
+        form = PostForm()
+    return render(request, 'blog/create_form.html', {'form': form})
+
+
 
 def post_search(request):
     form = SearchForm()
@@ -173,7 +196,7 @@ def post_list(request, tag_slug=None):
         post_list = post_list.filter(tags__in=[tag])
     
     # Pagination with 3 posts per page
-    paginator = Paginator(post_list, 3)
+    paginator = Paginator(post_list, 5)
     page_number = request.GET.get('page', 1)
     try:
         posts = paginator.page(page_number)

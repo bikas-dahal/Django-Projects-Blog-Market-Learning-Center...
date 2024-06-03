@@ -1,39 +1,115 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
 {% load static %}
 {% load blog_tags %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}{% endblock %}</title>
-  <link href="{% static "css/blog.css" %}" rel="stylesheet">
+  <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+  <style>
+    .nav-link {
+      color: #007bff; /* Custom link color */
+      transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    }
+    
+    .nav-link:hover, .nav-link:focus {
+      color: #0056b3; /* Darker shade on hover */
+      background-color: #f8f9fa; /* Light background on hover */
+    }
+    
+    .sidebar-heading {
+      transition: background-color 0.2s ease-in-out;
+    }
+    
+    .sidebar-heading:hover {
+      background-color: #e9ecef; /* Light background on hover for headings */
+    }
+  </style>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-  <div id="content">
-    {% block content %}
-    {% endblock %}
-  </div>
-  <div id="sidebar">
-    <h2> <a href= '{% url "home" %}'> Home</a></h2>
-    <h2> <a href= '{% url "blog:post_list" %}'> My blog</a></h2>
-    <p>This is my blog.
-    I've written {% total_posts %} posts so far.
-  </p>
-  <p>
-    <a href="{% url "blog:post_feed" %}">
-      Subscribe to my RSS feed
-    </a>
-  </p>
-  <h3>Latest posts</h3>
-    {% show_latest_posts 3 %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">gg</span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Navbar content here -->
+      </div>
+    </div>
+  </nav>
 
-    <h3>Most commented posts</h3>
-    {% get_most_commented_posts as most_commented_posts %}
-    <ul>
-      {% for post in most_commented_posts %}
-        <li>
-          <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active btn btn-secondary" aria-current="page" href="{% url 'home' %}">
+                Our Site
+              </a>
+            </li>
+            <li class="nav-item mb-2 mt-2">
+              <a class="nav-link active btn btn-dark" href="{% url 'blog:post_list' %}">
+                Our Blog
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active btn btn-success" href="{% url 'blog:post_create' %}">
+                Create Blog
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog:post_feed' %}">
+                Subscribe to RSS
+              </a>
+            </li>
+            <!-- Add more links here -->
+          </ul>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Latest Posts</span>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            {% show_latest_posts 3 %}
+          </ul>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Most Commented</span>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            {% get_most_commented_posts as most_commented_posts %}
+            {% for post in most_commented_posts %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ post.get_absolute_url }}">
+                  {{ post.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        {% block content %}
+        {% endblock %}
+      </main>
+    </div>
   </div>
+
+  <script>
+    // Optional JavaScript to close the sidebar menu after clicking a link
+    document.querySelectorAll('#sidebarMenu a.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        var sidebarMenu = document.getElementById('sidebarMenu');
+        var bsCollapse = new bootstrap.Collapse(sidebarMenu, {
+          toggle: false
+        });
+        bsCollapse.hide();
+      });
+    });
+  </script>
 </body>
 </html>
