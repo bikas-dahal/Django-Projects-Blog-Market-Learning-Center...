@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'actions.apps.ActionsConfig',
     'debug_toolbar',
-    'ckeditor',
     'django_summernote',
     
     'taggit',

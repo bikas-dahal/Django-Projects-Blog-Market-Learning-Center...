@@ -1,11 +1,11 @@
 {% extends "blog/base.html" %}
 {% load blog_tags %}
 
-{% block title %}My Blog{% endblock %}
+{% block title %}Our Blog{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
-  <h1 class="mb-4 margin text-center" style="color: #33475b;">My Blog</h1>
+  <h1 class="mb-4 margin text-center" style="color: #33475b;">Our Blog</h1>
   {% if tag %}
     <h2 class="mb-5 text-muted text-center">Posts tagged with "{{ tag.name }}"</h2>
   {% endif %}
