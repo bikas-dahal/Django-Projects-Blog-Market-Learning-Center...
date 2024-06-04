@@ -174,9 +174,11 @@ def post_comment(request, post_id):
         # Create a Comment object without saving it to the database
         comment = form.save(commit=False)
         # Assign the post to the comment
+        comment.name = request.user
         comment.post = post
         # Save the comment to the database
         comment.save()
+        return redirect(post.get_absolute_url())
     return render(
         request,
         'blog/post/comment.html',

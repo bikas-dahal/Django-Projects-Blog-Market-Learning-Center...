@@ -1,0 +1,34 @@
+{% if weather_data %}
+
+    <h1> {{ weather_data.city }}</h1> 
+    <h2> {{ weather_data.temperature }} </h2>
+
+    <p> {{ weather_data.description }} </p>
+    <p> {{ weather_data.humidity }} </p>
+    <p> {{ weather_data.wind_speed }} </p>
+    <p> {{ weather_data.wind_direction }} </p>
+    <p> {{ weather_data.pressure }} </p>
+
+    <img src = 'http://openweathermap.org/img/w/{{ weather_data.icon }}.png'
+    alt = '{{ weather_data.description }}' />
+
+
+{% endif %}
+
+{% if daily_forecasts %}
+
+    <h2>5-Day Forecasts</h2> 
+    <div class='forecast-container'>
+        {% for forecast in daily_forecasts %}
+
+        <div class='forecast'>
+            <h3>{{forecast.day}}</h3>
+            <p>{{ forecast.min_temp }} degree celcius</p>
+            <p>{{ forecast.max_temp }} degree celcius</p>
+            <img src = 'http://openweathermap.org/img/w/{{ forecast.icon }}.png' 
+            alt = '{{ forecast.description }}' />
+            <p>{{ forecast.description }}</p>
+
+        {% endfor %}
+
+{% endif %}

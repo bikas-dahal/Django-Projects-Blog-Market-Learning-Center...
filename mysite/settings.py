@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'taggit',
     'blog',
     'functions',
+    'weather',
     
     
 ]
@@ -102,6 +103,11 @@ if DEBUG:
     import mimetypes
     mimetypes.add_type('application/javascript', '.js', True)
     mimetypes.add_type('text/css', '.css', True)
+
+import os 
+
+
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
 
 ROOT_URLCONF = 'mysite.urls'

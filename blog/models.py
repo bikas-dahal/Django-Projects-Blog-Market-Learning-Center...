@@ -71,7 +71,6 @@ class Comment(models.Model):
         related_name='comments'
     )
     name = models.CharField(max_length=80)
-    email = models.EmailField()
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

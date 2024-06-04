@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <!-- Inline Styles -->
+    <style>
+        body {
+            background-color: #eef1f5;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            padding-top: 2rem;
+        }
+        .weather-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 1rem;
+            padding: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+        .weather-card:hover {
+            transform: translateY(-10px);
+        }
+        .weather-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .search-results, .default-results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .search-form {
+            margin-bottom: 2rem;
+        }
+        .search-form input[type="text"] {
+            margin-right: -1px;
+        }
+        .search-form button {
+            border-radius: 0;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            color: #007bff;
+        }
+        .card-text {
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .search-results, .default-results {
+                flex-direction: column;
+            }
+        }
+        /* Animation for weather icons */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        .weather-icon img {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Weather Dashboard</h1>
+        <!-- Search Form -->
+        <div class="row mb-4">
+            <div class="col">
+                <form method="post" action="{% url 'weather:index' %}" class="search-form">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Enter city name" name="city">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Default Location Weather Information -->
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center mb-3">Current Weather</h2>
+                <div class="default-results">
+                    <!-- Default Location Weather Card -->
+                    <div class="flex flex-row weather-card">
+                        <i class="weather-icon wi wi-day-sunny">
+                            <img src="https:{{weather_data.current.condition.icon}}" alt="Weather Icon">
+                        </i>                
+                        <h5 class="card-title">{{ weather_data.location.name }}</h5>
+                        <p class="card-text">
+                            <strong>Temperature:</strong> {{ weather_data.current.temp_c }}°C<br>
+                            <strong>Condition:</strong> {{ weather_data.current.condition.text }}<br>
+                            <strong>Wind Speed:</strong> {{ weather_data.current.wind_kph }} kph<br>
+                            <strong>Humidity:</strong> {{ weather_data.current.humidity }}%<br>
+                            {% comment %} <strong>AQI:</strong> {{ weather_data.current.air_quality.us-epa-index }} (US EPA Index)<br> {% endcomment %}
+                            
+                            {% comment %} <strong>GB-DEFRA Index:</strong> {{ weather_data.current.air_quality['gb-defra-index'] }} (UK DEFRA Index)<br> {% endcomment %}
+                        </p>
+                        
+                        <p class="card-text weather-card">
+                            <strong> <span  class='text-center'>AQI</span></strong><br>
+
+                            CO:{{ weather_data.current.air_quality.co }} ppm<br>
+                        NO2: {{ weather_data.current.air_quality.no2 }} µg/m³<br>
+                        O3: {{ weather_data.current.air_quality.o3 }} µg/m³<br>
+                        SO2: {{ weather_data.current.air_quality.so2 }} µg/m³<br>
+                        PM2.5: {{ weather_data.current.air_quality.pm2_5 }} µg/m³<br>
+                        PM10: {{ weather_data.current.air_quality.pm10 }} µg/m³<br>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Default Location Future Predictions -->
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center mb-3">Future Predictions</h2>
+                <div class="default-results">
+                    <!-- Forecast Cards -->
+                    {% for day in forecast_data.forecast.forecastday %}
+                    <div class="weather-card">
+                        <i class="weather-icon wi wi-day-sunny">
+                            <img src="https:{{ day.day.condition.icon }}" alt="Weather Icon">
+                        </i>
+                        {% if forloop.counter == 1 %}
+                            <div> <strong>Tomorrow</strong> | {{ day.date }}</div>
+                        {% else %}
+                            <div> {{ day.date }}</div>
+                        {% endif %}
+                        <div>Max: {{ day.day.maxtemp_c }}°C, Min: {{ day.day.mintemp_c }}°C</div>
+                        <div>{{ day.day.condition.text }}</div>
+                    </div>
+                {% endfor %}
+                
+                </div>
+            </div>
+        </div>
+
+        <!-- Searched City Weather and Forecast -->
+        {% if search_weather_data %}
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-center mb-3">Searched Location</h2>
+                    <div class="search-results">
+                        <!-- Searched Location Weather Card -->
+                        <div class="flex flex-row weather-card">
+                            <i class="weather-icon wi wi-day-sunny">
+                                <img src="https:{{search_weather_data.current.condition.icon}}" alt="Weather Icon">
+                            </i>                
+                            <h5 class="card-title">{{ search_weather_data.location.name }}</h5>
+                            <p class="card-text">
+                                <strong>Temperature:</strong> {{ search_weather_data.current.temp_c }}°C<br>
+                                <strong>Condition:</strong> {{ search_weather_data.current.condition.text }}<br>
+                                <strong>Wind Speed:</strong> {{ search_weather_data.current.wind_kph }} kph<br>
+                                <strong>Humidity:</strong> {{ search_weather_data.current.humidity }}%<br>
+                                {% comment %} <strong>AQI:</strong> {{ weather_data.current.air_quality.us-epa-index }} (US EPA Index)<br> {% endcomment %}
+                                
+                                {% comment %} <strong>GB-DEFRA Index:</strong> {{ weather_data.current.air_quality['gb-defra-index'] }} (UK DEFRA Index)<br> {% endcomment %}
+                            </p>
+                            
+                            <p class="card-text weather-card">
+                                <strong> <span  class='text-center'>AQI</span></strong><br>
+    
+                                CO:{{ search_weather_data.current.air_quality.co }} ppm<br>
+                            NO2: {{ search_weather_data.current.air_quality.no2 }} µg/m³<br>
+                            O3: {{ search_weather_data.current.air_quality.o3 }} µg/m³<br>
+                            SO2: {{ search_weather_data.current.air_quality.so2 }} µg/m³<br>
+                            PM2.5: {{ search_weather_data.current.air_quality.pm2_5 }} µg/m³<br>
+                            PM10: {{ search_weather_data.current.air_quality.pm10 }} µg/m³<br>
+    
+                            </p>
+                        </div>
+
+                        <!-- Searched Location Forecast Cards -->
+                        {% for day in search_forecast_data.forecast.forecastday %}
+                    <div class="weather-card">
+                        <i class="weather-icon wi wi-day-sunny">
+                            <img src="https:{{ day.day.condition.icon }}" alt="Weather Icon">
+                        </i>
+                        {% if forloop.counter == 1 %}
+                            <div> <strong>Tomorrow</strong> | {{ day.date }}</div>
+                        {% else %}
+                            <div> {{ day.date }}</div>
+                        {% endif %}
+                        <div>Max: {{ day.day.maxtemp_c }}°C, Min: {{ day.day.mintemp_c }}°C</div>
+                        <div>{{ day.day.condition.text }}</div>
+                    </div>
+                {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
