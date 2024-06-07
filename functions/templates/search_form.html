@@ -1,0 +1,35 @@
+<!-- search_form.html -->
+{% extends 'base.html' %}
+{% load blog_tags %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2>Ask a Question</h2>
+    <form action="{% url 'get_answer' %}" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Enter your question here..." name="question">
+            <button class="btn btn-outline-secondary" type="submit">Get Answer</button>
+        </div>
+    </form>
+    {% if answer %}
+        <div class="alert alert-info" role="alert">
+            <strong>Question:</strong> {{ question }}
+            <br>
+            <strong>Answer:</strong> {{ answer|markdown|safe }}
+        </div>
+    {% endif %}
+    {% if past_interactions %}
+        <h3>Your Recent Questions</h3>
+        <ul class="list-group">
+            {% for interaction in past_interactions %}
+                <li class="list-group-item">
+                    <strong>Q:</strong> {{ interaction.question }}
+                    <br>
+                    <strong>A:</strong> {{ interaction.answer|truncatewords:20 }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}

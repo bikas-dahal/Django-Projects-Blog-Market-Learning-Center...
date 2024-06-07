@@ -7,4 +7,5 @@ urlpatterns = [
     path('yt_home/',views.homePage,name="yt_home"),
     path('details/',views.detailsFunction,name="details"),
     path('download/',views.downloadFunction,name="download"),
+    path('get-answer/', views.get_answer, name='get_answer'),
 ]

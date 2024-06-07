@@ -13,6 +13,44 @@ def home(request):
     return render(request, 'home.html')
 
 
+# views.py# views.py
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .models import UserInteraction
+import google.generativeai as genai
+from decouple import config
+
+@login_required
+def get_answer(request):
+    context = {}
+    if request.method == 'POST':
+        question = request.POST.get('question')
+        
+        # Save the question in the session for personalization
+        if 'questions' not in request.session:
+            request.session['questions'] = []
+        request.session['questions'].append(question)
+        request.session.modified = True
+        
+        # Interact with the Gemini API
+        API_KEY = config('GEMINI_API_KEY')
+        genai.configure(api_key=API_KEY)
+        model = genai.GenerativeModel('gemini-1.5-flash')
+        response = model.generate_content(question)
+        
+        # Save the interaction in the database
+        UserInteraction.objects.create(user=request.user, question=question, answer=response.text)
+        
+        context['answer'] = response.text
+        context['question'] = question
+        
+    # Retrieve past interactions for personalization
+    past_interactions = UserInteraction.objects.filter(user=request.user).order_by('-timestamp')[:5]
+    context['past_interactions'] = past_interactions
+
+    return render(request, 'search_form.html', context)
+
+
 
 def homePage(request):
     return render(request, 'functions/download_page.html')
