@@ -6,15 +6,13 @@
   <h1>Checkout</h1>
   <div class="order-info">
     <h3>Your order</h3>
-    <ul>
-      {% for item in cart %}
-        <li>
-          {{ item.quantity }}x {{ item.product.name }}
-          <span>${{ item.total_price }}</span>
-        </li>
-      {% endfor %}
-    </ul>
-    <p>Total: ${{ cart.get_total_price }}</p>
+    {% if cart.coupon %}
+    <li>
+      "{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)
+      <span class="neg">- ${{ cart.get_discount|floatformat:2 }}</span>
+    </li>
+  {% endif %}
+    <p>Total: ${{ cart.get_total_price_after_discount|floatformat:2 }}</p>
   </div>
   <form method="post" class="order-form">
     {{ form.as_p }}
