@@ -42,7 +42,12 @@ urlpatterns = [
     path('weather', include('weather.urls')),
     path('summernote/', include('django_summernote.urls')),
     # path('', include('chat.urls')),
-    path('', include('shop.urls', namespace='shop')),
+
+    # shop
+    path('payment/', include('payment.urls', namespace='payment')),
+    path('shop/', include('shop.urls', namespace='shop')),
+    path('cart/', include('cart.urls', namespace='cart')),
+    path('orders/', include('orders.urls', namespace='orders')),
 ]
 if settings.DEBUG:
     urlpatterns += static(
