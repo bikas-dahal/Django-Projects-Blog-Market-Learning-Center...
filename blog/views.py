@@ -1,13 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .models import  Post
-from django.http import Http404
-from django.views.generic import ListView
 from django.core.mail import send_mail
 from django.views.decorators.http import require_POST
 from taggit.models import Tag
 from django.db.models import Count
 from django.contrib.postgres.search import TrigramSimilarity
+from django.contrib.auth.models import User
 
 from .forms import CommentForm, EmailPostForm, SearchForm
 from django.contrib.postgres.search import (
@@ -38,8 +37,6 @@ def post_create(request):
         form = PostForm()
     return render(request, 'blog/create_form.html', {'form': form})
 
-
-
 def post_search(request):
     form = SearchForm()
     query = None
@@ -48,15 +45,11 @@ def post_search(request):
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
-            search_vector = SearchVector('title', weight='A'
-            ) + SearchVector('body', weight='B')
-            search_query = SearchQuery(query)
             results = (
                 Post.published.annotate(
-                    similarity=TrigramSimilarity('title', query),
+                    search=SearchVector('title', 'body'),
                 )
-                .filter(similarity__gt=0.1)
-                .order_by('-similarity')
+                .filter(search=query)
             )
     return render(
         request,
@@ -69,6 +62,35 @@ def post_search(request):
     )
 
 
+# def post_search(request):
+#     form = SearchForm()
+#     query = None
+#     results = []
+#     if 'query' in request.GET:
+#         form = SearchForm(request.GET)
+#         if form.is_valid():
+#             query = form.cleaned_data['query']
+#             search_vector = SearchVector('title', weight='A'
+#             ) + SearchVector('body', weight='B')
+#             search_query = SearchQuery(query)
+#             results = (
+#                 Post.published.annotate(
+#                     similarity=TrigramSimilarity('title', query),
+#                 )
+#                 .filter(similarity__gt=0.1)
+#                 .order_by('-similarity')
+#             )
+#     return render(
+#         request,
+#         'blog/post/search.html',
+#         {
+#             'form': form,
+#             'query': query,
+#             'results': results
+#         }
+#     )
+
+
 def post_share(request, post_id):
     # Retrieve post by id
     post = get_object_or_404(
@@ -76,6 +98,10 @@ def post_share(request, post_id):
         id=post_id,
         status=Post.Status.PUBLISHED
     )
+    print(request.user)
+    user = User.objects.get(username = request.user)
+    # print(dir(user))
+    # print(user.email)
     sent = False
     if request.method == 'POST':
         # Form was submitted
@@ -83,6 +109,7 @@ def post_share(request, post_id):
         if form.is_valid():
             # Form fields passed validation
             cd = form.cleaned_data
+            # print(cd)
             post_url = request.build_absolute_uri(
                 post.get_absolute_url()
             )
@@ -141,6 +168,8 @@ def post_detail(request, year, month, day, post):
     
      # List of similar posts
     post_tags_ids = post.tags.values_list('id', flat=True)
+    # print(post_tags_ids)
+    # print(post_tags_ids[0])
     similar_posts = Post.published.filter(
         tags__in=post_tags_ids
     ).exclude(id=post.id)

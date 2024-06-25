@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.db.models.functions import Now
 from taggit.managers import TaggableManager
+from django.contrib.auth.models import User
 
 
 
@@ -13,6 +14,7 @@ class PublishedManager(models.Manager):
         return (
             super().get_queryset().filter(status=Post.Status.PUBLISHED)
         )
+
 
 # Create your models here.
 class Post(models.Model):
@@ -30,7 +32,7 @@ class Post(models.Model):
     objects = models.Manager() # The default manager.
     published = PublishedManager() # Our custom manager.
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        User,
         on_delete=models.CASCADE,
         related_name='blog_posts'
     )
@@ -58,7 +60,7 @@ class Post(models.Model):
             args=[
                 self.publish.year,
                 self.publish.month,
-                self.publish.day,
+                self.publish.day, 
                 self.slug
             ]
     )

@@ -2,7 +2,7 @@
 from django.contrib.auth import authenticate,  get_user_model, login
 from django.http import HttpResponse , JsonResponse
 from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from .forms import LoginForm, UserRegistrationForm ,UserEditForm,ProfileEditForm
 from .models import Contact, Profile
 
@@ -98,6 +98,18 @@ def edit(request):
     )
 
 
+@login_required
+def profile(request):
+    return render(
+        request,
+        'account/profile.html',
+        {
+            'user': request.user,
+        }
+    )
+
+
+
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
@@ -105,19 +117,30 @@ def register(request):
             # Create a new user object but avoid saving it yet
             new_user = user_form.save(commit=False)
             # Set the chosen password
-            new_user.set_password(
+            a = new_user.set_password(
                 user_form.cleaned_data['password']
             )
+            print(a)
             # Save the User object
             new_user.save()
             # Create the user profile
             Profile.objects.create(user=new_user)
             create_action(new_user, 'has created an account')
-            return render(
-               request,
-               'account/register_done.html',
-               {'new_user': new_user}
-           )
+            # Log the user in and then redirect to the homepage
+            user = authenticate(
+                request,
+                username=new_user.username,
+                password=user_form.cleaned_data['password']
+            )
+            if user is not None:
+                # print('Check')
+                login(request, user)
+                return redirect('home')
+        #     return render(
+        #        request,
+        #        'account/register_done.html',
+        #        {'new_user': new_user}
+        #    )
     else:
         user_form = UserRegistrationForm()
     return render(
@@ -145,24 +168,25 @@ def dashboard(request):
     )
 
 
-def user_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(
-                request,
-                username=cd['username'],
-                password=cd['password']
-            )
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponse('Authenticated successfully')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login')
-    else:
-        form = LoginForm()
-    return render(request, 'account/login.html', {'form': form})
+# def user_login(request):
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             cd = form.cleaned_data
+#             user = authenticate(
+#                 request,
+#                 username=cd['username'],
+#                 password=cd['password']
+#             )
+#             if user is not None:
+#                 print('Check')
+#                 if user.is_active:
+#                     login(request, user)
+#                     return HttpResponse('Authenticated successfully')
+#                 else:
+#                     return HttpResponse('Disabled account')
+#             else:
+#                 return HttpResponse('Invalid login')
+#     else:
+#         form = LoginForm()
+#     return render(request, 'account/login.html', {'form': form})

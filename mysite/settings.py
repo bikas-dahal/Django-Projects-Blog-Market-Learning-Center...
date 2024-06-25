@@ -58,8 +58,17 @@ INSTALLED_APPS = [
     
     'taggit',
     'blog',
+    'shop',
     'functions',
     'weather',
+
+    # 'allauth_ui',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.github',
+    # 'widget_tweaks',
     
     
 ]
@@ -207,6 +216,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 
 
@@ -222,7 +233,7 @@ LOGOUT_URL = 'logout'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Email server configuration
 EMAIL_HOST = 'smtp.gmail.com'

@@ -16,14 +16,19 @@ def total_posts():
 @register.inclusion_tag('blog/post/latest_posts.html')
 def show_latest_posts(count=5):
     latest_posts = Post.published.order_by('-publish')[:count]
+    # for post in latest_posts:
+    #     print(type(post))
     return {'latest_posts': latest_posts}
 
 
 @register.simple_tag
 def get_most_commented_posts(count=5):
-    return Post.published.annotate(
+    a = Post.published.annotate(
         total_comments=Count('comments')
     ).order_by('-total_comments')[:count]
+    for post in a:
+        print((post.total_comments))
+    return a
     
 
 @register.filter(name='markdown')

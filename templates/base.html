@@ -54,7 +54,7 @@
                 <a href="{% url 'home'%}" class="text-white text-lg font-semibold">My Site</a>
                 <ul class="flex space-x-4">
                     {% if user.is_authenticated %}
-                    <li><p class="text-white">{{ user.username|capfirst }}</p></li>
+                    <li><a href='{% url "profile" %}' class="text-white">{{ user.username|capfirst }}</a></li>
                     {% comment %} <li><a class="text-white" href="{% url 'create_blog' %}">Create Blog</a></li> {% endcomment %}
                     <li><a href="{ url 'index'}" class="text-gray-300 hover:text-white">Home</a></li>
                     <li><a href="#" class="text-gray-300 hover:text-white">About</a></li>

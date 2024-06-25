@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from taggit.managers import TaggableManager
+
 
 
 class Profile(models.Model):
@@ -10,6 +12,11 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
+
+    tags = TaggableManager()
+
+
+
     date_of_birth = models.DateField(blank=True, null=True)
     photo = models.ImageField(
         upload_to='users/%Y/%m/%d/',

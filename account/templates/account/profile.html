@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>{{ profile.user.username }}</h1>
+    <img src="{{ profile.photo }}" alt="Profile Avatar" class="img-fluid rounded-circle">
+    <p>{{ profile.tags }}</p>
+    <p>You can also <a class='btn btn-primary' href="{% url "edit" %}">edit your profile</a> or <a class='btn btn-secondary' href="{% url "password_change" %}">change your password</a>.</p>
+
+</div>
+{% endblock %}
