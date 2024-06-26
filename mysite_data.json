@@ -18,6 +18,24 @@
   }
 },
 {
+  "model": "account.profile",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "date_of_birth": null,
+    "photo": ""
+  }
+},
+{
+  "model": "account.profile",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "date_of_birth": "2024-06-24",
+    "photo": "users/2024/06/24/OIP.jpeg"
+  }
+},
+{
   "model": "admin.logentry",
   "pk": 1,
   "fields": {
@@ -119,6 +137,123 @@
     "object_repr": "Why Kriya Yoga? A Scientific Approach to Spiritual Enlightenment",
     "action_flag": 2,
     "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2024-06-24T17:27:13.892Z",
+    "user": 1,
+    "content_type": 1,
+    "object_id": "4",
+    "object_repr": "Profile of ram",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\", \"Date of birth\", \"Photo\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2024-06-24T17:27:29.547Z",
+    "user": 1,
+    "content_type": 1,
+    "object_id": "4",
+    "object_repr": "Profile of ram",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2024-06-25T04:27:16.914Z",
+    "user": 1,
+    "content_type": 26,
+    "object_id": "1",
+    "object_repr": "Electronics",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2024-06-25T04:27:39.642Z",
+    "user": 1,
+    "content_type": 25,
+    "object_id": "1",
+    "object_repr": "Yphone",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2024-06-25T05:54:56.706Z",
+    "user": 1,
+    "content_type": 25,
+    "object_id": "2",
+    "object_repr": "Headphone",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2024-06-25T05:56:29.468Z",
+    "user": 1,
+    "content_type": 26,
+    "object_id": "2",
+    "object_repr": "Fashion",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2024-06-25T05:56:50.503Z",
+    "user": 1,
+    "content_type": 25,
+    "object_id": "3",
+    "object_repr": "Long Coat for Men",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2024-06-25T06:56:23.222Z",
+    "user": 1,
+    "content_type": 28,
+    "object_id": "1",
+    "object_repr": "Order 1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"order item\", \"object\": \"1\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2024-06-25T16:57:32.713Z",
+    "user": 1,
+    "content_type": 29,
+    "object_id": "1",
+    "object_repr": "SYAM",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
   }
 },
 {
@@ -986,11 +1121,191 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 97,
+  "fields": {
+    "name": "Can add product",
+    "content_type": 25,
+    "codename": "add_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 98,
+  "fields": {
+    "name": "Can change product",
+    "content_type": 25,
+    "codename": "change_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 99,
+  "fields": {
+    "name": "Can delete product",
+    "content_type": 25,
+    "codename": "delete_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 100,
+  "fields": {
+    "name": "Can view product",
+    "content_type": 25,
+    "codename": "view_product"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 101,
+  "fields": {
+    "name": "Can add category",
+    "content_type": 26,
+    "codename": "add_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 102,
+  "fields": {
+    "name": "Can change category",
+    "content_type": 26,
+    "codename": "change_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 103,
+  "fields": {
+    "name": "Can delete category",
+    "content_type": 26,
+    "codename": "delete_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 104,
+  "fields": {
+    "name": "Can view category",
+    "content_type": 26,
+    "codename": "view_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 105,
+  "fields": {
+    "name": "Can add order item",
+    "content_type": 27,
+    "codename": "add_orderitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 106,
+  "fields": {
+    "name": "Can change order item",
+    "content_type": 27,
+    "codename": "change_orderitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 107,
+  "fields": {
+    "name": "Can delete order item",
+    "content_type": 27,
+    "codename": "delete_orderitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 108,
+  "fields": {
+    "name": "Can view order item",
+    "content_type": 27,
+    "codename": "view_orderitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 109,
+  "fields": {
+    "name": "Can add order",
+    "content_type": 28,
+    "codename": "add_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 110,
+  "fields": {
+    "name": "Can change order",
+    "content_type": 28,
+    "codename": "change_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 111,
+  "fields": {
+    "name": "Can delete order",
+    "content_type": 28,
+    "codename": "delete_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 112,
+  "fields": {
+    "name": "Can view order",
+    "content_type": 28,
+    "codename": "view_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 113,
+  "fields": {
+    "name": "Can add coupon",
+    "content_type": 29,
+    "codename": "add_coupon"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 114,
+  "fields": {
+    "name": "Can change coupon",
+    "content_type": 29,
+    "codename": "change_coupon"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 115,
+  "fields": {
+    "name": "Can delete coupon",
+    "content_type": 29,
+    "codename": "delete_coupon"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 116,
+  "fields": {
+    "name": "Can view coupon",
+    "content_type": 29,
+    "codename": "view_coupon"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$720000$ZvAXfgJQ4As6SmCt40vPDe$P+bFgtJQNdse7//lVtUBRi9IkzJgj357K+a+z64Xe6s=",
-    "last_login": "2024-06-07T00:48:25.613Z",
+    "last_login": "2024-06-25T06:55:59.331Z",
     "is_superuser": true,
     "username": "ripple",
     "first_name": "",
@@ -1008,7 +1323,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$720000$iAlgLukZ6Py4n4K8SQdQAo$RBwkpT8/QW7DLj02H8wd/HO5jcywMWpWG6eFpG4JdEo=",
-    "last_login": "2024-06-03T10:02:08.443Z",
+    "last_login": "2024-06-11T16:36:44.156Z",
     "is_superuser": false,
     "username": "namru",
     "first_name": "Namrata",
@@ -1035,6 +1350,42 @@
     "is_staff": false,
     "is_active": true,
     "date_joined": "2024-06-01T14:03:14.690Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$VjjOxaPZlSXSAf73CbS21u$4xZWkltDdiO+NDIT60/8c7sezvZ5zbtyrBfRdtdi8ws=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "hari",
+    "first_name": "Hari",
+    "last_name": "Lal",
+    "email": "hari@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-06-24T17:10:59.864Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$HiJ41p2lj9eu6JbnbrCzF7$Q32OByio4bUvzSxZnaR5hjmK+1McYNijPkpxOvHmayE=",
+    "last_login": "2024-06-24T17:31:33.727Z",
+    "is_superuser": false,
+    "username": "ram",
+    "first_name": "Ram",
+    "last_name": "Lal",
+    "email": "ram@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-06-24T17:15:16.375Z",
     "groups": [],
     "user_permissions": []
   }
@@ -1232,6 +1583,78 @@
   }
 },
 {
+  "model": "contenttypes.contenttype",
+  "pk": 25,
+  "fields": {
+    "app_label": "shop",
+    "model": "product"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 26,
+  "fields": {
+    "app_label": "shop",
+    "model": "category"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 27,
+  "fields": {
+    "app_label": "orders",
+    "model": "orderitem"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 28,
+  "fields": {
+    "app_label": "orders",
+    "model": "order"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 29,
+  "fields": {
+    "app_label": "coupons",
+    "model": "coupon"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "1z590q47ehhsehcc4flkkwvhp4w40lyw",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pAZLBRduvcMBJgZqRpISrsy3l2bdKHb_977LxXiupSwdp7DROqsUB1-txTzg-sG6B7rrenc6jJPSW-K3mnX10b8vOzu30GJvXxrI9mMSITgcIiIyRMDePFE5iTACGjFyZhytlbA-0gDi0l8BEces3p_AOghOE4:1sHnLA:MAQJliZUJXj0SpdUZGPi_hj0uumVjvxFXkpkftyD5qk",
+    "expire_date": "2024-06-27T16:30:20.403Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7gx56pcgwuabepyxys0pwl1vbma2e3ug",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSGUxyAu3fsNZGAGqRqalHZl_HfbpAvd3nPOfYuI61Lj2nmOI4mLcOL0uyXMT247oAe2-yTz1JZ5THJX5EG7vE3Er-vh_h1U7HWrvQY3eIXgSyGgAiGUIZmswGg050Re20DFBbTM1mV2BnXRavOMA8Pi8wXbGzeO:1sLnXR:wQfw3UFvg99jAahmGzVdCcYSubmOMjoQP4OqiQjzlc4",
+    "expire_date": "2024-07-08T17:31:33.731Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7oot4ndqxttyoos1qkpr1phn66fpzpgv",
+  "fields": {
+    "session_data": "eyJjYXJ0Ijp7fX0:1sMJsy:e8fmXUtODqUyo0w7JQJua8LeG655TE3B7ik_faHv0lg",
+    "expire_date": "2024-07-10T04:03:56.859Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "b6xsc94vks28ivlnz1io7a8nmvei1c38",
+  "fields": {
+    "session_data": ".eJxVjrEOgzAMRP8lM4rsFELasXu_ATm2U2grIgWYEP9ekBja9d7d062mo2Xuu2XS0g1ibgZN9ZtF4reOB5AXjc9sOY9zGaI9Kvakk31k0c_97P4Jepr6fe0SuxZFEDzWhBiDKEBIQcRdEygCNsmnNjI3TYIQSGpNLuoFvATkXZqLnCfRV4apzOa2btsXiYY_8w:1sMHDK:shmBXgzntvXKLhipuAGmM-ZO9fmmLVOrlPlQNt21Y74",
+    "expire_date": "2024-07-10T01:12:46.523Z"
+  }
+},
+{
   "model": "sessions.session",
   "pk": "c3pig2vvfvffbjckuc4tiochj0wpqr3u",
   "fields": {
@@ -1273,6 +1696,22 @@
 },
 {
   "model": "sessions.session",
+  "pk": "lz1mmwyj26clcdnvpkno6by26ojjquz0",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSE8ZACX7vsNZGCmUjU0Ke3K-O_apAvd3nPOfYmE21rT1nlJE4mLMOL0u2UsD247oDu22yzL3NZlynJX5EG7HGbi5_Vw_w4q9vqtnSeMOo6OtIbCwerzyAW8t1yUpexsAJWNR7Y-avAuEBWTySmMFgDE-wPdqTeD:1sH4UG:nFNDCwQKpMUQOU7N83iFPj8eoTG0pD59LiB28v_l2cE",
+    "expire_date": "2024-06-25T16:36:44.168Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mn8ttzu187nrxfvssu00rgohhut6z7qf",
+  "fields": {
+    "session_data": ".eJxVjr0OgzAQg98lM4pyKT8pY_c-A7rcXQptlaAAE-LdCypDO9r-bHlVHS5z3y2T5G5g1SpQxa_nkV4Sj4CfGB9JU4pzHrw-EH2mk74nlvftZP8Gepz6vW0D2QaYwdRQIoB3LMa44JjtNRgBA1WoQ-OJqioY55BLCdbLxdTsgPbRlPk8CWWhKC1jil-5K8yzatdt-wAp7ESM:1sM9s9:cI0dYETuM2A1fXhMtVNMMUtVzTvFtL85MHB0unU1uqA",
+    "expire_date": "2024-07-09T17:22:25.441Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "mwwo7biwrzhcttu77klqhw4czt9njge5",
   "fields": {
     "session_data": ".eJxVjEEOwiAQRe_C2pAZLBRduvcMBJgZqRpISrsy3l2bdKHb_977LxXiupSwdp7DROqsUB1-txTzg-sG6B7rrenc6jJPSW-K3mnX10b8vOzu30GJvXxrI9mMSITgcIiIyRMDePFE5iTACGjFyZhytlbA-0gDi0l8BEces3p_AOghOE4:1sA6Ws:n5kohRKTCW6-76rP4aBNO4cRVmZamDrSElOAX6AeDr0",
@@ -1297,6 +1736,14 @@
 },
 {
   "model": "sessions.session",
+  "pk": "nrtyvfmdq8xvr12gxtu8y0hya15vrn3a",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pAZLBRduvcMBJgZqRpISrsy3l2bdKHb_977LxXiupSwdp7DROqsUB1-txTzg-sG6B7rrenc6jJPSW-K3mnX10b8vOzu30GJvXxrI9mMSITgcIiIyRMDePFE5iTACGjFyZhytlbA-0gDi0l8BEces3p_AOghOE4:1sKTjH:y7JNYlSz0MzsecuVnT2_XY3NhP7iolGkGYexsetl2ro",
+    "expire_date": "2024-07-05T02:10:19.534Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "p9piq88ssil8hcziz2tgplpf4igymg68",
   "fields": {
     "session_data": ".eJxVjMsOwiAURH-FsDYNt_aBXbr3C4xpgHsRrEKENo0x_rtt0oVuZjFz5rx5r6bR9VOm1HvkHQe---20MgOFdcCbCtdYmBjG5HWxIsW25uIUke7Hjf0TOJXd8i6tKVtABNFApQC0RBJCWolYHqwgEFDbxrbamLq2QkqFFdlS0140KMEs0udEefQxZN6d-Zz8SMzFB80xDczGxChn9WI-MOUX2m1x-XwBtkFLpQ:1sFO3p:JtAwrEEFxOTLCTBldJ1UrAxhO3GFTPtNgYrtCBBVb24",
@@ -1309,6 +1756,22 @@
   "fields": {
     "session_data": ".eJxVjEEOwiAQRe_C2pAZLBRduvcMBJgZqRpISrsy3l2bdKHb_977LxXiupSwdp7DROqsUB1-txTzg-sG6B7rrenc6jJPSW-K3mnX10b8vOzu30GJvXxrI9mMSITgcIiIyRMDePFE5iTACGjFyZhytlbA-0gDi0l8BEces3p_AOghOE4:1sA6SZ:4nLL8Avjgq0D4pY9vaF4M4XymldB_9S7ECaWITkHiAE",
     "expire_date": "2024-06-06T11:18:11.931Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zew4rtpuizxjxds07pfls8oix08dvo71",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pAZLBRduvcMBJgZqRpISrsy3l2bdKHb_977LxXiupSwdp7DROqsUB1-txTzg-sG6B7rrenc6jJPSW-K3mnX10b8vOzu30GJvXxrI9mMSITgcIiIyRMDePFE5iTACGjFyZhytlbA-0gDi0l8BEces3p_AOghOE4:1sJZLm:Ua7c-9iITO_3RXu_nb3dW4n__nHBQ7ytL-XJhbhFKWA",
+    "expire_date": "2024-07-02T13:58:18.749Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zk3yv5t0g41ofzh9r2o2uu36cdiprg26",
+  "fields": {
+    "session_data": ".eJxVz8EOgjAMBuB36Zks7RQcHL37DGRrN0HNhjAOxvjugpqolx76f23TO7R2zl07T35se4EGCIrfnrN89nEN5GTjMSlOMY-9UytRn3RShyT-sv_YvwWdnbplWgfWOxIhrGhriZwRj2iCEdF1QE9IZajCzjGXZUBjrGx90M5vsBJDvCxlO2Zo7rBZy3W2Mff5Bo0pYBh79uuRulaI8ChA_xv9NeWbLIbTPKT4-poeT643VEY:1sMAlb:6ZpqkIkL3eIFp6K7PnjuAug4Ci378aX20VLrzy8vzcY",
+    "expire_date": "2024-07-09T18:19:43.558Z"
   }
 },
 {
@@ -1366,6 +1829,28 @@
     "user": 3,
     "verb": "has created an account",
     "created": "2024-06-01T14:03:15.824Z",
+    "target_ct": null,
+    "target_id": null
+  }
+},
+{
+  "model": "actions.action",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "verb": "has created an account",
+    "created": "2024-06-24T17:11:00.967Z",
+    "target_ct": null,
+    "target_id": null
+  }
+},
+{
+  "model": "actions.action",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "verb": "has created an account",
+    "created": "2024-06-24T17:15:17.442Z",
     "target_ct": null,
     "target_id": null
   }
@@ -1512,6 +1997,30 @@
   "fields": {
     "name": "Evolution",
     "slug": "evolution"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 19,
+  "fields": {
+    "name": "try",
+    "slug": "try"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 20,
+  "fields": {
+    "name": "self",
+    "slug": "self"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 21,
+  "fields": {
+    "name": "life",
+    "slug": "life"
   }
 },
 {
@@ -1704,6 +2213,60 @@
   }
 },
 {
+  "model": "taggit.taggeditem",
+  "pk": 32,
+  "fields": {
+    "tag": 11,
+    "content_type": 21,
+    "object_id": 18
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 33,
+  "fields": {
+    "tag": 19,
+    "content_type": 21,
+    "object_id": 19
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 34,
+  "fields": {
+    "tag": 11,
+    "content_type": 21,
+    "object_id": 20
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 35,
+  "fields": {
+    "tag": 20,
+    "content_type": 21,
+    "object_id": 20
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 36,
+  "fields": {
+    "tag": 21,
+    "content_type": 1,
+    "object_id": 4
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 37,
+  "fields": {
+    "tag": 14,
+    "content_type": 1,
+    "object_id": 4
+  }
+},
+{
   "model": "blog.post",
   "pk": 1,
   "fields": {
@@ -1886,6 +2449,48 @@
   }
 },
 {
+  "model": "blog.post",
+  "pk": 18,
+  "fields": {
+    "title": "checking time",
+    "slug": "checking-time",
+    "publish": "2024-06-11T16:56:07.719Z",
+    "created": "2024-06-11T16:56:07.715Z",
+    "updated": "2024-06-11T16:56:07.715Z",
+    "body": "<p>I am only <b>checking</b> the <u>publish time</u> problem in my blog <font color=\"#000000\" style=\"background-color: rgb(255, 0, 0);\">app</font></p>",
+    "author": 2,
+    "status": "PB"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 19,
+  "fields": {
+    "title": "Again checking time",
+    "slug": "again-checking-time",
+    "publish": "2024-06-11T16:57:38.936Z",
+    "created": "2024-06-11T16:57:38.934Z",
+    "updated": "2024-06-11T16:57:38.934Z",
+    "body": "<pre class=\"\"><b>Still</b> working?</pre>",
+    "author": 2,
+    "status": "PB"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 20,
+  "fields": {
+    "title": "Checking about the author field",
+    "slug": "checking-about-the-author-field",
+    "publish": "2024-06-11T17:09:00.411Z",
+    "created": "2024-06-11T17:09:00.410Z",
+    "updated": "2024-06-11T17:09:00.410Z",
+    "body": "<p>Is author available i guess yes</p>",
+    "author": 2,
+    "status": "PB"
+  }
+},
+{
   "model": "blog.comment",
   "pk": 1,
   "fields": {
@@ -1918,6 +2523,550 @@
     "body": "check if the comment is working...",
     "created": "2024-06-03T14:21:36.162Z",
     "updated": "2024-06-03T14:21:36.162Z",
+    "active": true
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 4,
+  "fields": {
+    "post": 17,
+    "name": "ripple",
+    "body": "ripple le",
+    "created": "2024-06-18T14:00:38.982Z",
+    "updated": "2024-06-18T14:00:38.982Z",
+    "active": true
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 5,
+  "fields": {
+    "post": 17,
+    "name": "ripple",
+    "body": "cheking redirect",
+    "created": "2024-06-24T08:59:44.044Z",
+    "updated": "2024-06-24T08:59:44.044Z",
+    "active": true
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 1,
+  "fields": {
+    "name": "Electronics",
+    "slug": "electronics"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 2,
+  "fields": {
+    "name": "Fashion",
+    "slug": "fashion"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Yphone",
+    "slug": "yphone",
+    "image": "",
+    "description": "Best Phone for you,",
+    "price": "199.00",
+    "available": true,
+    "created": "2024-06-25T04:27:39.638Z",
+    "updated": "2024-06-25T04:27:39.638Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "name": "Headphone",
+    "slug": "headphone",
+    "image": "",
+    "description": "For you",
+    "price": "59.00",
+    "available": true,
+    "created": "2024-06-25T05:54:56.699Z",
+    "updated": "2024-06-25T05:54:56.699Z"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 3,
+  "fields": {
+    "category": 2,
+    "name": "Long Coat for Men",
+    "slug": "long-coat-for-men",
+    "image": "products/2024/06/25/long_coat.webp",
+    "description": "Looks Great for you",
+    "price": "299.00",
+    "available": true,
+    "created": "2024-06-25T05:56:50.500Z",
+    "updated": "2024-06-25T05:56:50.500Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 1,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "33700",
+    "city": "Pokhara",
+    "created": "2024-06-25T06:56:23.210Z",
+    "updated": "2024-06-25T06:56:23.210Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 2,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "33600",
+    "city": "Pokhara",
+    "created": "2024-06-25T07:35:37.144Z",
+    "updated": "2024-06-25T07:35:37.144Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 3,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "33600",
+    "city": "Pokhara",
+    "created": "2024-06-25T08:08:16.384Z",
+    "updated": "2024-06-25T08:08:16.384Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 4,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "33600",
+    "city": "Pokhara",
+    "created": "2024-06-25T08:10:34.538Z",
+    "updated": "2024-06-25T08:10:34.538Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 5,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Dhapakhel, Lalitpur-23",
+    "postal_code": "23213",
+    "city": "gg",
+    "created": "2024-06-25T08:12:14.109Z",
+    "updated": "2024-06-25T08:12:14.109Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 6,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Dhapakhel, Lalitpur-23",
+    "postal_code": "2323",
+    "city": "North Adelaide",
+    "created": "2024-06-25T08:15:40.034Z",
+    "updated": "2024-06-25T08:15:40.034Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 7,
+  "fields": {
+    "first_name": "Ram",
+    "last_name": "Lal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "12312",
+    "city": "Pokhara",
+    "created": "2024-06-25T08:30:11.651Z",
+    "updated": "2024-06-25T08:30:11.651Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 8,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "2323",
+    "postal_code": "23123",
+    "city": "washington",
+    "created": "2024-06-25T08:32:13.473Z",
+    "updated": "2024-06-25T08:32:13.473Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 9,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "21313",
+    "city": "Pokhara",
+    "created": "2024-06-25T08:49:23.505Z",
+    "updated": "2024-06-25T08:49:23.505Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 10,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "12314",
+    "city": "North Adelaide",
+    "created": "2024-06-25T14:28:37.826Z",
+    "updated": "2024-06-25T14:28:37.826Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 11,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "123123",
+    "city": "washington",
+    "created": "2024-06-25T15:32:48.388Z",
+    "updated": "2024-06-25T15:33:12.104Z",
+    "paid": true,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 12,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "12313",
+    "postal_code": "14311",
+    "city": "pokhara",
+    "created": "2024-06-25T16:48:01.652Z",
+    "updated": "2024-06-25T16:48:22.736Z",
+    "paid": true,
+    "stripe_id": "pi_3PVcXZDd4ozYLwPJ20QTvgHQ",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 13,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "123123",
+    "city": "pokhara",
+    "created": "2024-06-25T16:50:05.475Z",
+    "updated": "2024-06-25T16:50:25.532Z",
+    "paid": true,
+    "stripe_id": "pi_3PVcZXDd4ozYLwPJ0DKQdW0G",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 14,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "12313",
+    "city": "North Adelaide",
+    "created": "2024-06-25T17:19:20.743Z",
+    "updated": "2024-06-25T17:22:24.197Z",
+    "paid": true,
+    "stripe_id": "pi_3PVd4UDd4ozYLwPJ0WREaLko",
+    "coupon": 1,
+    "discount": 20
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 15,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "123",
+    "city": "washington",
+    "created": "2024-06-25T18:12:08.214Z",
+    "updated": "2024-06-25T18:12:08.214Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 16,
+  "fields": {
+    "first_name": "Bikas",
+    "last_name": "Dahal",
+    "email": "bikkydahal@gmail.com",
+    "address": "Thulakhet",
+    "postal_code": "123",
+    "city": "washington",
+    "created": "2024-06-26T01:12:45.227Z",
+    "updated": "2024-06-26T01:12:45.227Z",
+    "paid": false,
+    "stripe_id": "",
+    "coupon": null,
+    "discount": 0
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "product": 3,
+    "price": "12.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 2,
+    "product": 3,
+    "price": "299.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 3,
+  "fields": {
+    "order": 3,
+    "product": 1,
+    "price": "199.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 4,
+  "fields": {
+    "order": 5,
+    "product": 1,
+    "price": "199.00",
+    "quantity": 3
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 5,
+  "fields": {
+    "order": 6,
+    "product": 1,
+    "price": "199.00",
+    "quantity": 2
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 6,
+  "fields": {
+    "order": 7,
+    "product": 1,
+    "price": "199.00",
+    "quantity": 3
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 7,
+  "fields": {
+    "order": 8,
+    "product": 1,
+    "price": "199.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 8,
+  "fields": {
+    "order": 9,
+    "product": 3,
+    "price": "299.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 9,
+  "fields": {
+    "order": 10,
+    "product": 3,
+    "price": "299.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 10,
+  "fields": {
+    "order": 11,
+    "product": 3,
+    "price": "299.00",
+    "quantity": 4
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 11,
+  "fields": {
+    "order": 12,
+    "product": 3,
+    "price": "299.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 12,
+  "fields": {
+    "order": 13,
+    "product": 2,
+    "price": "59.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 13,
+  "fields": {
+    "order": 13,
+    "product": 3,
+    "price": "299.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 14,
+  "fields": {
+    "order": 14,
+    "product": 3,
+    "price": "299.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 15,
+  "fields": {
+    "order": 15,
+    "product": 3,
+    "price": "299.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 16,
+  "fields": {
+    "order": 16,
+    "product": 3,
+    "price": "299.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "coupons.coupon",
+  "pk": 1,
+  "fields": {
+    "code": "SYAM",
+    "valid_from": "2024-06-25T16:57:20Z",
+    "valid_to": "2024-06-30T16:57:25Z",
+    "discount": 20,
     "active": true
   }
 },

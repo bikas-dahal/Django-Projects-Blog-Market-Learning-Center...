@@ -16,7 +16,6 @@ class Profile(models.Model):
     tags = TaggableManager()
 
 
-
     date_of_birth = models.DateField(blank=True, null=True)
     photo = models.ImageField(
         upload_to='users/%Y/%m/%d/',

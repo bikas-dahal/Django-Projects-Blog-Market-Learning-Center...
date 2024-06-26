@@ -36,8 +36,10 @@ urlpatterns = [
         'social-auth/',
         include('social_django.urls', namespace='social')
     ),
+
     # path('accounts/', include('accounts.urls')),
     path('blog/', include('blog.urls', namespace='blog')),
+    
     path('', include('functions.urls')),
     path('weather', include('weather.urls')),
     path('summernote/', include('django_summernote.urls')),
