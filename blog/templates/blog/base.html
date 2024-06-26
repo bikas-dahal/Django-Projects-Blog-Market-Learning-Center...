@@ -10,6 +10,7 @@
   <title>{% block title %}{% endblock %}</title>
   <link href="{% static 'css/blog.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     .nav-link {
       color: #007bff; /* Custom link color */
@@ -98,8 +99,16 @@
       </main>
     </div>
   </div>
-
+  <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
   <script>
+    const csrftoken = Cookies.get('csrftoken');
+    document.addEventListener('DOMContentLoaded', (event) => {
+      // DOM loaded
+      {% block domready %}
+      {% endblock %}
+    })
+  </script>
+  {% comment %} <script>
     // Optional JavaScript to close the sidebar menu after clicking a link
     document.querySelectorAll('#sidebarMenu a.nav-link').forEach(function(link) {
       link.addEventListener('click', function() {
@@ -110,6 +119,6 @@
         bsCollapse.hide();
       });
     });
-  </script>
+  </script> {% endcomment %}
 </body>
 </html>

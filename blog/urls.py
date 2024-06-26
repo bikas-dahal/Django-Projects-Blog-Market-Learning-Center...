@@ -19,5 +19,5 @@ urlpatterns = [
     path('feed/', LatestPostsFeed(), name='post_feed'),
     path('search/', views.post_search, name='post_search'),
     path('create/', views.post_create, name='post_create'),
-    
+    path('like/', views.blog_like, name='like'),
 ]

@@ -11,14 +11,14 @@
     {% else %}
           <img src="{% static "img/photo.webp" %}" alt="{{ user.get_full_name }}" class='item-img'></a>
     {% endif %}
-        {% comment %} <img src="{{ im.url }}" alt="{{ user.get_full_name }}" {% endcomment %}
+        <img src="{{ im.url }}" alt="{{ user.get_full_name }}"
          class="item-img">
       </a>
     {% endif %}
     {% if action.target %}
       {% with target=action.target %}
         {% if target.image %}
-          {% comment %} {% thumbnail target.image "80x80" crop="100%" as im %} {% endcomment %}
+          {% thumbnail target.image "80x80" crop="100%" as im %}
           <a href="{{ target.get_absolute_url }}">
             <img src="{{ im.url }}" class="item-img">
           </a>

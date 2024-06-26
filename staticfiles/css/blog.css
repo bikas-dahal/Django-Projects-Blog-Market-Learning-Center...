@@ -1,0 +1,48 @@
+.count {
+    color:#aaa;
+    border:3px solid #bbb;
+    border-radius:26px;
+    padding:10px 20px;
+    margin:20px 10px 0;
+}
+a.like, a.follow { float:right; margin-top:-8px; }
+
+
+.image-preview, .image-detail {
+    max-width:300px;
+    float:left;
+    margin:0 20px 20px 0;
+}
+.image-detail { margin-top:20px; }
+.image-info div {
+    padding:20px 0;
+    overflow:auto;
+}
+
+.image-likes div {
+    float:left;
+    width:auto;
+    padding:10px;
+    text-align:center;
+}
+.image-likes img {
+    width:120px;
+    height:120px;
+    border-radius:50%;
+}
+
+input[type=submit], a.button {
+    font-weight:bold;
+    background:#f635fa;
+    color:#3d2f2f;
+    padding:5px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size:14px;
+    text-transform:uppercase;
+}
+
+a.button:hover{
+    background:#3d2f2f;
+    color:#f635fa;
+}

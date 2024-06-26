@@ -41,6 +41,12 @@ class Post(models.Model):
         choices=Status,
         default=Status.PUBLISHED
     )   
+
+    users_like = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='blogs_liked',
+        blank=True
+    )
     
     
     class Meta:

@@ -18,6 +18,26 @@ from django.contrib.postgres.search import (
 from django.shortcuts import render, redirect
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+
+
+@login_required
+@require_POST
+def blog_like(request):
+    post_id = request.POST.get('id')
+    action = request.POST.get('action')
+    if post_id and action:
+        try:
+            post = Post.objects.get(id=post_id)
+            if action == 'like':
+                post.users_like.add(request.user)
+            else:
+                post.users_like.remove(request.user)
+            return JsonResponse({'status': 'ok'})
+        except post.DoesNotExist:
+            pass
+    return JsonResponse({'status': 'error'})
 
 
 @login_required
