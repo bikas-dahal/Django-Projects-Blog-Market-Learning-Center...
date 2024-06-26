@@ -40,5 +40,5 @@ def stripe_webhook(request):
             order.stripe_id = session.payment_intent
             order.save()
             # launch asynchronous task
-            payment_completed.delay(order.id)
+            # payment_completed.delay(order.id)
     return HttpResponse(status=200)
