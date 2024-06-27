@@ -22,10 +22,21 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from actions.utils import create_action
 
+import redis
+from django.conf import settings
 
-from django.core.cache import caches
 
-cache = caches['default']
+r = redis.Redis(
+    host=settings.REDIS_HOST, 
+    port=settings.REDIS_PORT, 
+    password=settings.REDIS_PASSWORD,
+    decode_responses=True
+)
+
+
+# from django.core.cache import caches
+
+# cache = caches['default']
 
 
 
@@ -191,11 +202,11 @@ def post_detail(request, year, month, day, post):
         publish__day=day)
     
     # Check if the cache key exists; if not, set it with an initial value of 0
-    cache_key = f'image:{post.id}:views'
-    if not cache.has_key(cache_key):
-        cache.set(cache_key, 0)
+    total_views = r.incr(f'post:{post.id}:views')
+
+    # increment image ranking by 1
+    r.zincrby('post_ranking', 1, post.id)
     
-    total_views = cache.incr(cache_key)
     
     # List of active comments for this post
     comments = post.comments.filter(active=True)
@@ -223,6 +234,27 @@ def post_detail(request, year, month, day, post):
             'similar_posts': similar_posts,
             'total_views': total_views
         }
+    )
+
+@login_required
+def post_ranking(request):
+    # get image ranking dictionary
+    post_ranking = r.zrange(
+        'post_ranking', 0, -1,
+        desc=True
+    )[:10]
+    post_ranking_ids = [int(id) for id in post_ranking]
+    # get most viewed images
+    most_viewed = list(
+        Post.objects.filter(
+            id__in=post_ranking_ids
+        )
+    )
+    most_viewed.sort(key=lambda x: post_ranking_ids.index(x.id))
+    return render(
+        request,
+        'blog/post/ranking.html',
+        { 'most_viewed': most_viewed}
     )
     
     

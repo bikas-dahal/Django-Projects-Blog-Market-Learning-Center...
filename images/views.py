@@ -9,9 +9,25 @@ from django.views.decorators.http import require_POST
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
-from django.core.cache import cache
+from django.core.cache import caches
+import redis 
+from django.conf import settings
 
-# cache = cache['default']
+
+# r = redis.Redis(
+#     host=settings.REDIS_HOST,
+#     port=settings.REDIS_PORT,
+#     db=settings.REDIS_DB
+# )
+
+r = redis.Redis(
+    host=settings.REDIS_HOST, 
+    port=settings.REDIS_PORT, 
+    password=settings.REDIS_PASSWORD,
+    decode_responses=True
+)
+
+# cache = caches['default']
 
 
 def image_detail(request, id, slug):
@@ -19,13 +35,13 @@ def image_detail(request, id, slug):
 
     # Check if the cache key exists; if not, set it with an initial value of 0
     cache_key = f'image:{image.id}:views'
-    if not cache.has_key(cache_key):
-        cache.set(cache_key, 0)
+    # if not cache.has_key(cache_key):
+    #     cache.set(cache_key, 0)
     
-    total_views = cache.incr(cache_key)
+    total_views = r.incr(cache_key)
 
     # increment image ranking by 1
-    cache.zincrby('image_ranking', 1, image.id)
+    r.zincrby('image_ranking', 1, image.id)
 
     return render(
         request,
@@ -36,7 +52,7 @@ def image_detail(request, id, slug):
 @login_required
 def image_ranking(request):
     # get image ranking dictionary
-    image_ranking = cache.zrange(
+    image_ranking = r.zrange(
         'image_ranking', 0, -1,
         desc=True
     )[:10]

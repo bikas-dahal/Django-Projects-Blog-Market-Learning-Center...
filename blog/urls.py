@@ -20,4 +20,5 @@ urlpatterns = [
     path('search/', views.post_search, name='post_search'),
     path('create/', views.post_create, name='post_create'),
     path('like/', views.blog_like, name='like'),
+    path('ranking/', views.post_ranking, name='ranking'),
 ]
