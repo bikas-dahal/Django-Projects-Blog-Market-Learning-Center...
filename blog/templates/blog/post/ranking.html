@@ -1,4 +1,5 @@
-{% extends "base.html" %}
+{% extends "blog/base.html" %}
+{% load blog_tags %}
 
 {% block title %}Post Ranking{% endblock %}
 
@@ -7,12 +8,28 @@
     <h1 class="mb-4">Post Ranking</h1>
     <ol class="list-group">
       {% for post in most_viewed %}
-        <li class="list-group-item">
-          <span class="badge bg-primary me-2">{{ forloop.counter }}</span>
-          <a href="{{ post.get_absolute_url }}" class="text-decoration-none">
-            {{ post.title }}
-          </a>
-        </li>
+      <div class="card mb-4 shadow" style="background-color: #e9ecef;">
+        <div class="card-body">
+          <h2 class="card-title">
+            <a href="{{ post.get_absolute_url }}" class="text-decoration-none link-custom">
+              {{ post.title }}
+            </a>
+          </h2>
+          <p class="card-text">
+            <small class="text-muted">
+              Published {{ post.publish }} by {{ post.author }}
+            </small>
+          </p>
+          <p class="card-text">{{ post.body|markdown|truncatewords_html:20|safe }}</p>
+          <div class="d-flex flex-wrap">
+            {% for tag in post.tags.all %}
+              <a href="{% url 'blog:post_list_by_tag' tag.slug %}" class="badge bg-secondary me-8 mb-8">
+                {{ tag.name }}
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
       {% endfor %}
     </ol>
   </div>
