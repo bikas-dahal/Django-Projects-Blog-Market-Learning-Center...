@@ -45,11 +45,19 @@ User = get_user_model()
 @login_required
 def user_list(request):
     users = User.objects.filter(is_active=True)
+    actions = Action.objects.exclude(user=request.user)
+    following_ids = request.user.following.values_list(
+        'id', flat=True
+    )
+    if following_ids:
+        # If user is following others, retrieve only their actions
+        actions = actions.filter(user_id__in=following_ids)
+    actions = actions.select_related('user', 'user__profile').prefetch_related('target')[:10]
     return render(
         request,
         'account/user/list.html',
         {
-            'section': 'people', 'users': users
+            'section': 'people', 'users': users, 'actions':actions
         }
     )
     

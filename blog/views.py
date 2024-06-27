@@ -20,6 +20,7 @@ from .forms import PostForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from actions.utils import create_action
 
 
 @login_required
@@ -32,6 +33,7 @@ def blog_like(request):
             post = Post.objects.get(id=post_id)
             if action == 'like':
                 post.users_like.add(request.user)
+                create_action(request.user, 'like', post)
             else:
                 post.users_like.remove(request.user)
             return JsonResponse({'status': 'ok'})
@@ -52,6 +54,7 @@ def post_create(request):
                 post.slug = slugify(post.title)
             post.save()
             form.save_m2m()
+            create_action(request.user, 'create a new blog', post)
             return redirect(post.get_absolute_url())
     else:
         form = PostForm()

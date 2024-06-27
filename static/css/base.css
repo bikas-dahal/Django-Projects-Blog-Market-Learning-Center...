@@ -47,3 +47,28 @@ ul.messages li a.close {
 .login-form {
     float:left;
 }
+
+.action {
+    clear:both;
+    overflow:auto;
+}
+.action .images {
+    float:left;
+    margin:0 10px 10px 0;
+}
+.action .date {
+    font-style:italic;
+    color:#ccc;
+}
+
+a {
+    color:#66ece1;
+
+    
+
+    text-decoration:none;
+}
+
+a:hover {
+    color:#6288d3;
+}

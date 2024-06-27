@@ -1,45 +1,45 @@
 {% load thumbnail %}
 {% load static %}
+
 {% with user=action.user profile=action.user.profile %}
-<div class="action">
-  <div class="images">
-    {% if profile.photo %}
-      {% thumbnail user.profile.photo "80x80" crop="100%" as im %}
-      <a href="{{ user.get_absolute_url }}">
-        {% if user.profile.photo %} 
-        <img src="{{ im.url }}" alt="{{ user.get_full_name }}" class='item-img'></a>
-    {% else %}
-          <img src="{% static "img/photo.webp" %}" alt="{{ user.get_full_name }}" class='item-img'></a>
-    {% endif %}
-        <img src="{{ im.url }}" alt="{{ user.get_full_name }}"
-         class="item-img">
-      </a>
-    {% endif %}
-    {% if action.target %}
-      {% with target=action.target %}
-        {% if target.image %}
-          {% thumbnail target.image "80x80" crop="100%" as im %}
-          <a href="{{ target.get_absolute_url }}">
-            <img src="{{ im.url }}" class="item-img">
-          </a>
-        {% endif %}
-      {% endwith %}
-    {% endif %}
-  </div>
-  <div class="info">
-    <p>
-      <span class="date">{{ action.created|timesince }} ago</span>
-      <br />
-      <a href="{{ user.get_absolute_url }}">
-        {{ user.first_name }}
-      </a>
-      {{ action.verb }}
-      {% if action.target %}
-        {% with target=action.target %}
-          <a href="{{ target.get_absolute_url }}">{{ target }}</a>
-        {% endwith %}
-      {% endif %}
-    </p>
+<div class="container my-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="me-3">
+              {% if profile.photo %}
+                {% thumbnail user.profile.photo "80x80" crop="100%" as im %}
+                <a href="{{ user.get_absolute_url }}">
+                  <img src="{{ im.url }}" alt="{{ user.get_full_name }}" class="rounded-circle item-img">
+                </a>
+              {% else %}
+                <a href="{{ user.get_absolute_url }}">
+                  <img src="{% static 'img/photo.webp' %}" alt="{{ user.get_full_name }}" class="rounded-circle item-img" style="width: 80px; height: 80px;">
+                </a>
+              {% endif %}
+            </div>
+            <div>
+              <a href="{{ user.get_absolute_url }}" class="h5 card-title mb-0">
+                {{ user.username|capfirst }}
+              </a>
+              <p class="card-text">
+                {{ action.verb }}
+                {% if action.target %}
+                  {% with target=action.target %}
+                    <a href="{{ target.get_absolute_url }}">{{ target }}</a>
+                  {% endwith %}
+                {% endif %}
+              </p>
+              <p class="card-text">
+                <small class="text-muted">{{ action.created|timesince }} ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endwith %}

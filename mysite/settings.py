@@ -60,11 +60,13 @@ INSTALLED_APPS = [
     'taggit',
     'images',
     'blog',
+
     'shop',
     'cart',
     'orders',
     'payment',
     'coupons',
+
     'functions',
     'weather',
 
