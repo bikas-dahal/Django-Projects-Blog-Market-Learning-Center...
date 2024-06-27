@@ -312,9 +312,9 @@ SUMMERNOTE_CONFIG = {
 CACHES = {
     'default': {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://redis-13570.c100.us-east-1-4.ec2.redns.redis-cloud.com:13570",
+        "LOCATION": config('REDIS_HOST'),
         "OPTIONS": {
-             "PASSWORD": "TTEmxNidC6zfpLkuCJhps4EasWbZD20e",
+             "PASSWORD": config('REDIS_PASSWORD'),
              "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
     },
