@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "basee.html" %}
 {% load thumbnail %}
 {% load static %}
 {% block title %}{{ user.get_full_name }}{% endblock %}
@@ -6,9 +6,9 @@
   <h1>{{ user.get_full_name }}</h1>
   <div class="profile-info">
     {% if user.profile.photo %} 
-        <img src="{% thumbnail user.profile.photo 180x180 %}" class="user-detail">
+      <img src="{% thumbnail user.profile.photo 80x80 %}" class="rounded-circle" alt="{{ user.get_full_name }}">
     {% else %}
-          <img src="{% static "img/photo.webp" %}" class = 'user-detail'>
+      <img src="{% static 'img/photo.webp' %}" class="rounded-circle" alt="Default photo" style="width: 80px; height: 80px;">
     {% endif %}
     
   </div>

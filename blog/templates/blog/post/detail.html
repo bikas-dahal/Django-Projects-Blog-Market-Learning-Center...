@@ -37,7 +37,7 @@
           <p>{{ user.first_name }}</p> {% endcomment %}
         </div>
       {% empty %}
-        Nobody likes this image yet.
+        {% comment %} Nobody likes this image yet. {% endcomment %}
       {% endfor %}
     </div>
     {% endwith %}

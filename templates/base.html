@@ -6,7 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Django Project</title>
+    <title>
+    {% block title %}
+    My Django Project
+    {% endblock title %}
+  </title>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Untree.co">
@@ -52,14 +56,14 @@
     <nav class="bg-gray-800 py-4">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between">
-                <a href="{% url 'home'%}" class="text-white text-lg font-semibold">My Site</a>
+                <a href="{% url 'home'%}" class="text-white text-lg font-semibold">Our Site</a>
                 <ul class="flex space-x-4">
                     {% if user.is_authenticated %}
                     <li><a href='{% url "profile" %}' class="text-white">{{ user.username|capfirst }}</a></li>
                     {% comment %} <li><a class="text-white" href="{% url 'create_blog' %}">Create Blog</a></li> {% endcomment %}
                     {% comment %} <li><a href="{ url 'index'}" class="text-gray-300 hover:text-white">Home</a></li> {% endcomment %}
                     <li><a href="#" class="text-gray-300 hover:text-white">About</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">Friends</a></li>
+                    <li><a href="{% url "user_list" %}" class="text-gray-300 hover:text-white">Community</a></li>
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
                         <button class="text-gray-300 hover:text-white" type="submit">Logout</button>

@@ -2,25 +2,31 @@
 {% load thumbnail %}
 {% load static %}
 {% block title %}People{% endblock %}
+
 {% block content %}
-  <h1>People</h1>
-  <div id="people-list">
-    {% for user in users %}
-      <div class="user">
-        {# photo thumbnail #}  {# default image #} 
-        <a href="{{ user.get_absolute_url }}">
-          {% if user.profile.photo %} 
-          <img src="{% thumbnail user.profile.photo 180x180 %}">
-          {% else %}
-          <img src={% static "img/photo.webp" %}>
-          {% endif %}
-        </a>
-        <div class="info">
-          <a href="{{ user.get_absolute_url }}" class="title">
-            {{ user.get_full_name }}
-          </a>
+  <h1 class="text-center my-4">People</h1>
+  <div class="container">
+    <div class="row">
+      {% for user in users %}
+        <div class="col-md-6 col-lg-4 mb-3">
+          <div class="card">
+            <div class="card-body d-flex align-items-center">
+              <a href="{{ user.get_absolute_url }}" class="me-3">
+                {% if user.profile.photo %} 
+                  <img src="{% thumbnail user.profile.photo 80x80 %}" class="rounded-circle" alt="{{ user.get_full_name }}">
+                {% else %}
+                  <img src="{% static 'img/photo.webp' %}" class="rounded-circle" alt="Default photo" style="width: 80px; height: 80px;">
+                {% endif %}
+              </a>
+              <div class="info">
+                <a href="{{ user.get_absolute_url }}" class="h5 card-title mb-0">
+                  {{ user.get_full_name }}
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}
