@@ -23,6 +23,12 @@ from django.views.decorators.http import require_POST
 from actions.utils import create_action
 
 
+from django.core.cache import caches
+
+cache = caches['default']
+
+
+
 @login_required
 @require_POST
 def blog_like(request):
@@ -184,6 +190,13 @@ def post_detail(request, year, month, day, post):
         publish__month=month,
         publish__day=day)
     
+    # Check if the cache key exists; if not, set it with an initial value of 0
+    cache_key = f'image:{post.id}:views'
+    if not cache.has_key(cache_key):
+        cache.set(cache_key, 0)
+    
+    total_views = cache.incr(cache_key)
+    
     # List of active comments for this post
     comments = post.comments.filter(active=True)
     # Form for users to comment
@@ -207,7 +220,8 @@ def post_detail(request, year, month, day, post):
             'post': post,
             'comments': comments,
             'form': form,
-            'similar_posts': similar_posts
+            'similar_posts': similar_posts,
+            'total_views': total_views
         }
     )
     

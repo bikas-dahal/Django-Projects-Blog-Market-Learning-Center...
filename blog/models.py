@@ -23,6 +23,7 @@ class Post(models.Model):
         PUBLISHED = 'PB', 'Published'
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
+    total_likes = models.PositiveIntegerField(default=0)
     # publish = models.DateTimeField(default=timezone.now)
     publish = models.DateTimeField(db_default=Now())    
     created = models.DateTimeField(auto_now_add=True)
@@ -53,6 +54,7 @@ class Post(models.Model):
         ordering = ['-publish']
         indexes = [
             models.Index(fields=['-publish']),
+            models.Index(fields=['-total_likes']),
         ]
     
     

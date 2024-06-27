@@ -10,6 +10,7 @@ class Image(models.Model):
         related_name='images_created',
         on_delete=models.CASCADE
     )
+    total_likes = models.PositiveIntegerField(default=0)
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, blank=True)
     url = models.URLField(max_length=2000)
@@ -29,6 +30,7 @@ class Image(models.Model):
     class Meta:
         indexes = [
             models.Index(fields=['-created']),
+            models.Index(fields=['-total_likes']),
         ]
         ordering = ['-created']
 

@@ -9,6 +9,51 @@ from django.views.decorators.http import require_POST
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
+from django.core.cache import cache
+
+# cache = cache['default']
+
+
+def image_detail(request, id, slug):
+    image = get_object_or_404(Image, id=id, slug=slug)
+
+    # Check if the cache key exists; if not, set it with an initial value of 0
+    cache_key = f'image:{image.id}:views'
+    if not cache.has_key(cache_key):
+        cache.set(cache_key, 0)
+    
+    total_views = cache.incr(cache_key)
+
+    # increment image ranking by 1
+    cache.zincrby('image_ranking', 1, image.id)
+
+    return render(
+        request,
+        'images/image/detail.html',
+        {'section': 'images', 'image': image, 'total_views': total_views}
+    )
+
+@login_required
+def image_ranking(request):
+    # get image ranking dictionary
+    image_ranking = cache.zrange(
+        'image_ranking', 0, -1,
+        desc=True
+    )[:10]
+    image_ranking_ids = [int(id) for id in image_ranking]
+    # get most viewed images
+    most_viewed = list(
+        Image.objects.filter(
+            id__in=image_ranking_ids
+        )
+    )
+    most_viewed.sort(key=lambda x: image_ranking_ids.index(x.id))
+    return render(
+        request,
+        'images/image/ranking.html',
+        {'section': 'images', 'most_viewed': most_viewed}
+    )
+
 
 
 @login_required
@@ -60,13 +105,6 @@ def image_like(request):
     return JsonResponse({'status': 'error'})
 
 
-def image_detail(request, id, slug):
-    image = get_object_or_404(Image, id=id, slug=slug)
-    return render(
-        request,
-        'images/image/detail.html',
-        {'section': 'images', 'image': image}
-    )
 
 
 @login_required

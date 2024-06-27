@@ -54,10 +54,11 @@ INSTALLED_APPS = [
     'django_extensions',
     'easy_thumbnails',
     'actions.apps.ActionsConfig',
-    'debug_toolbar',
+    # 'debug_toolbar',
     'django_summernote',
     
     'taggit',
+    'redis',
     'images',
     'blog',
 
@@ -92,7 +93,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -141,6 +142,8 @@ STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 STRIPE_API_VERSION = '2024-04-10'
 STRIPE_WEBHOOK_SECRET = config('STRIPE_WEBHOOK_SECRET')
+
+
 
 
 
@@ -198,6 +201,11 @@ DATABASES = {
 
 
 
+REDIS_HOST = config('REDIS_HOST')
+REDIS_PORT = config('REDIS_PORT')
+REDIS_DB = 0
+
+
 # Use database-backed sessions
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
@@ -220,13 +228,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# INTERNAL_IPS = [
+#     '127.0.0.1',
+# ]  
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kathmandu'
 
 USE_I18N = True
 
@@ -294,4 +306,16 @@ SUMMERNOTE_CONFIG = {
             ['view', ['fullscreen', 'codeview', 'help']],
         ],
     }
+}
+
+
+CACHES = {
+    'default': {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis-13570.c100.us-east-1-4.ec2.redns.redis-cloud.com:13570",
+        "OPTIONS": {
+             "PASSWORD": "TTEmxNidC6zfpLkuCJhps4EasWbZD20e",
+             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    },
 }

@@ -166,3 +166,5 @@ flower==2.0.1
 celery==5.4.0
 WeasyPrint==61.2
 stripe
+hiredis
+django-redis
