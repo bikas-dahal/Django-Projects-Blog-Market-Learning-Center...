@@ -201,10 +201,6 @@ DATABASES = {
 
 
 
-REDIS_HOST = config('REDIS_HOST')
-REDIS_PORT = config('REDIS_PORT')
-REDIS_DB = 0
-
 
 # Use database-backed sessions
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
