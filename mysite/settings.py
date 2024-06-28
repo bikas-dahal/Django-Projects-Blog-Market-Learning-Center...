@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'images',
     'blog',
 
+    'courses',
+
     'shop',
     'cart',
     'orders',
