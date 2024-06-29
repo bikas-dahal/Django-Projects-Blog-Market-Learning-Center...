@@ -56,13 +56,17 @@ INSTALLED_APPS = [
     'actions.apps.ActionsConfig',
     # 'debug_toolbar',
     'django_summernote',
+    'rest_framework',
     
     'taggit',
     'redis',
+    'redisboard',
     'images',
     'blog',
 
     'courses',
+    'students',
+    'embed_video',
 
     'shop',
     'cart',
@@ -85,6 +89,13 @@ INSTALLED_APPS = [
 ]
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+
 
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
@@ -99,8 +110,9 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -319,4 +331,25 @@ CACHES = {
              "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
     },
+}
+
+CACHES = {
+    'default': {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": config('REDIS_HOST'),
+        "OPTIONS": {
+             "PASSWORD": config('REDIS_PASSWORD'),
+             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    },
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': config('REDIS_HOST_CACHE'),
+        'OPTIONS': {
+            'PASSWORD': config('REDIS_PASSWORD'),
+        }
+    }
 }

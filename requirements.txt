@@ -169,3 +169,7 @@ stripe
 hiredis
 django-redis
 django-braces
+django-embed-video
+pymemcache
+django-redisboard
+djangorestframework
