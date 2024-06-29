@@ -168,3 +168,4 @@ WeasyPrint==61.2
 stripe
 hiredis
 django-redis
+django-braces

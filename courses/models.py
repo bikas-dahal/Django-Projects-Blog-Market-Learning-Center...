@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from .fields import OrderField
+from .fields import OrderField
 
 
 class Subject(models.Model):
@@ -47,8 +48,11 @@ class Module(models.Model):
     description = models.TextField(blank=True)
     order = OrderField(blank=True, for_fields=['course'])
 
+    class Meta:
+        ordering = ['order']
+
     def __str__(self):
-        return self.title
+        return f'{self.order}. {self.title}'
     
 
 class Content(models.Model):
@@ -64,8 +68,12 @@ class Content(models.Model):
             'model__in':('text', 'video', 'image', 'file')
         }
     )
+    order = OrderField(blank=True, for_fields=['module'])
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        ordering = ['order']
 
 
 class ItemBase(models.Model):

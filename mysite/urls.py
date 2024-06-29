@@ -54,6 +54,9 @@ urlpatterns = [
     path('orders/', include('orders.urls', namespace='orders')),
     path('coupons/', include('coupons.urls', namespace='coupons')),
 
+    # courses
+    path('course/', include('courses.urls')),
+
 ]
 if settings.DEBUG:
     import debug_toolbar
