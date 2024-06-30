@@ -36,7 +36,7 @@ SITE_ID = 1
 INSTALLED_APPS = [
     # 'chat',
     # 'channels',
-    # 'daphne',
+    'daphne',
     'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth', 
@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     'courses',
     'students',
     'embed_video',
+    'chat',
+    
 
     'shop',
     'cart',
@@ -299,11 +301,14 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
-    }
-}
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer',
+#     }
+# }
+
+
+
 
 
 
@@ -340,4 +345,11 @@ CACHES = {
     },
 }
 
-
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [("redis://default:SbwjwbCsFOOkAqFyvoVOFvjAUmtYmvpl@redis-12282.c10.us-east-1-4.ec2.redns.redis-cloud.com:12282")],
+        },
+    },
+}
