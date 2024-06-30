@@ -12,9 +12,10 @@
       <ul class="menu">
         {% if request.user.is_authenticated %}
           <li>
-            <form action="{% url "logout" %}" method="post">
-              <button type="submit">Sign out</button>
-            </form>
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">Logout</button>
+          </form>  
           </li>
         {% else %}
           <li><a href="{% url "login" %}">Sign in</a></li>

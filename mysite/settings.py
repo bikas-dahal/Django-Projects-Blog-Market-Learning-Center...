@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ss$%&bb*l5bk@%f)0s4*eoyeuyuwmlff9p6knezm0u6nb0!e=k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['octopus-app-w5jl6.ondigitalocean.app', 'localhost', '127.0.0.1', 'bikasdahal.me', 'mysite.com']
 
@@ -112,7 +112,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.cache.FetchFromCacheMiddleware',    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',    
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -278,6 +279,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
+
+LOGOUT_REDIRECT_URL = 'home'  
+
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
@@ -318,38 +322,22 @@ SUMMERNOTE_CONFIG = {
     }
 }
 
+
 REDIS_HOST = config('REDIS_HOST')
+REDIS_HOST_CACHE = config('REDIS_HOST_CACHE')
 REDIS_PORT = config('REDIS_PORT')
 REDIS_PASSWORD = config('REDIS_PASSWORD')
 
+
 CACHES = {
     'default': {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": config('REDIS_HOST'),
+        "LOCATION": REDIS_HOST_CACHE,
         "OPTIONS": {
-             "PASSWORD": config('REDIS_PASSWORD'),
+             "PASSWORD": REDIS_PASSWORD,
              "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
     },
 }
 
-CACHES = {
-    'default': {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": config('REDIS_HOST'),
-        "OPTIONS": {
-             "PASSWORD": config('REDIS_PASSWORD'),
-             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
-    },
-}
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': config('REDIS_HOST_CACHE'),
-        'OPTIONS': {
-            'PASSWORD': config('REDIS_PASSWORD'),
-        }
-    }
-}
