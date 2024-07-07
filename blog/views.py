@@ -138,7 +138,7 @@ def post_share(request, post_id):
         id=post_id,
         status=Post.Status.PUBLISHED
     )
-    print(request.user)
+    # print(request.user)
     user = User.objects.get(username = request.user)
     # print(dir(user))
     # print(user.email)

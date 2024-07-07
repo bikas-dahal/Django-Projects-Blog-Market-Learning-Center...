@@ -12,12 +12,12 @@ def get_weather_data(city_name):
     current_weather_response = requests.get(current_weather_url)
     forecast_response = requests.get(forecast_url)
     
-    print(current_weather_response)
-    print(forecast_response)
+    # print(current_weather_response)
+    # print(forecast_response)
     
     if current_weather_response.status_code == 200 and forecast_response.status_code == 200:
         current_weather_data = current_weather_response.json()
-        print(current_weather_data)
+        # print(current_weather_data)
         
         forecast_data = forecast_response.json()
         return current_weather_data, forecast_data

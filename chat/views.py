@@ -18,7 +18,7 @@ def course_chat_room(request, course_id):
         'user'
     ).order_by('-id')[:10]
     latest_messages = reversed(latest_messages)
-    print(latest_messages)
+    # print(latest_messages)
 
     return render(request, 'chat/room.html', {
         'course': course, 
