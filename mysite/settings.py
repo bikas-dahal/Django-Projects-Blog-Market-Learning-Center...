@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ss$%&bb*l5bk@%f)0s4*eoyeuyuwmlff9p6knezm0u6nb0!e=k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True 
 
 ALLOWED_HOSTS = ['octopus-app-w5jl6.ondigitalocean.app', 'localhost', '127.0.0.1', 'bikasdahal.me', 'mysite.com']
 
@@ -94,7 +94,13 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_THROTTLE_RATES':{
+        'anon':'5/day',
+        'user':'10/hour',
+    },
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
 }
 
 
