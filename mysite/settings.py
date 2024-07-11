@@ -96,8 +96,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     'DEFAULT_THROTTLE_RATES':{
-        'anon':'5/day',
-        'user':'10/hour',
+        'anon':'15/day',
+        'user':'20/hour',
     },
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5,
