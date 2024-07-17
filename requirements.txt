@@ -173,3 +173,4 @@ django-redisboard
 djangorestframework
 channels[daphne]==4.1.0
 channels-redis
+sentry-sdk[django]

@@ -23,6 +23,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from courses.views import CourseListView
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 
 sitemaps = {
     'posts': PostSitemap,
@@ -34,6 +37,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('accounts/', include('allauth.urls')),
     path('account/', include('account.urls')),
+    
+    path('sentry-debug/', trigger_error),
+    
     path( 
         'social-auth/',
         include('social_django.urls', namespace='social')
