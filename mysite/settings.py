@@ -235,6 +235,14 @@ DATABASES = {
 }
 
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:1337',
+    'http://143.110.184.15:1337',
+    'https://bikasdahal.tech:1337',
+    'http://bikasdahal.tech:1337',
+    
+    # Add other origins if necessary
+]
 
 
 
