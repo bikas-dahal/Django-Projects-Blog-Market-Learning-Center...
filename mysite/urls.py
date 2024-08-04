@@ -38,7 +38,7 @@ urlpatterns = [
     # path('accounts/', include('allauth.urls')),
     path('account/', include('account.urls')),
     
-    path('sentry-debug/', trigger_error),
+    # path('sentry-debug/', trigger_error),
     
     path( 
         'social-auth/',
@@ -56,7 +56,8 @@ urlpatterns = [
     # path('', include('chat.urls')),
 
     # shop
-    path('payment/', include('payment.urls', namespace='payment')),
+    # path('/', include('payment.urls', namespace='payment')),
+    # path('payment/', include('payment.urls', namespace='payment')),
     path('shop/', include('shop.urls', namespace='shop')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),

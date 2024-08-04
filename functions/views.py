@@ -1,11 +1,8 @@
-from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
-from pytube import YouTube
-import requests
-import logging
-from django.http import JsonResponse
-from pytube import YouTube
-import requests
+# import logging
+# from django.http import JsonResponse
+# from pytube import YouTube
+# import requests
 
 # Create your views here.
 
