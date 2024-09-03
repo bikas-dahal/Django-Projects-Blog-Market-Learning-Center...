@@ -62,6 +62,8 @@ Follow these instructions to get a copy of the project up and running on your lo
 - PostgreSQL
 - Redis
 
+  `I initially deployed using digital ocean app platform, later with the help of docker-compose with cluster, nginx and other required cloud services, and lastly with k8s but now is not working on it, if anyone want to work further on this and make something out of this, I welcome you. 😊`
+
 ### Setup Instructions
 
 1. **Clone the repository:**
@@ -120,5 +122,5 @@ Contributions are welcome! Please follow these steps:
 ## Contact
 
 **Bikas Dahal**  
-[GitHub](https://github.com/bikas-dahal) | [LinkedIn]([[https://linkedin.com/in/bikas-dahal](https://www.linkedin.com/in/bikas-dahal-2229301b3/)])
+[GitHub](https://github.com/bikas-dahal) | [LinkedIn](https://www.linkedin.com/in/bikas-dahal-2229301b3/)
 
