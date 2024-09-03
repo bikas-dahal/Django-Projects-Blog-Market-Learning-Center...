@@ -28,18 +28,19 @@ This repository contains three major Django projects:
 - **Blog Application**
   - User authentication and profiles
   - Create, edit, and delete posts
-  - Categories and tags for posts
+  - Categories and tags for posts, like and views also
   - Commenting system
 
 - **Market Application**
   - Product catalog with search and filter options
-  - Shopping cart and checkout
+  - Shopping cart and checkout with Stripe integration
   - Order history and tracking (to be added)
   - User reviews and ratings (to be added)
 
 - **Learning Center**
   - Course listing and detailed descriptions
   - Enroll in courses and track progress
+  - Chatrooms
   - Interactive quizzes and assessments (to be added)
 
 ## Tech Stack
